@@ -1,0 +1,22 @@
+//
+//  VirtualControllerDriver.iig
+//  VirtualControllerDriver
+//
+//  Created by Eddie Hillenbrand on 4/14/25.
+//  Copyright © 2025 Silly Utility. All rights reserved.
+//
+
+#ifndef VirtualControllerDriver_h
+#define VirtualControllerDriver_h
+
+#include <Availability.h>
+#include <DriverKit/IOService.iig>
+
+class VirtualControllerDriver: public IOService
+{
+public:
+    virtual kern_return_t
+    Start(IOService * provider) override;
+};
+
+#endif /* VirtualControllerDriver_h */

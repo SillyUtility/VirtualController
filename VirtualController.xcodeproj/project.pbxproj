@@ -6,8 +6,51 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2C864D802DAD64B000BA70BE /* DriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C864D7F2DAD64B000BA70BE /* DriverKit.framework */; };
+		2C864D892DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 2C864D7D2DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C864D872DAD64B000BA70BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C864D1E2DAD5D6C00BA70BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C864D7C2DAD64B000BA70BE;
+			remoteInfo = VirtualControllerDriver;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2C864D472DAD5E4400BA70BE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		2C864D8E2DAD64B000BA70BE /* Embed System Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(SYSTEM_EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				2C864D892DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext in Embed System Extensions */,
+			);
+			name = "Embed System Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2C864D2C2DAD5D6E00BA70BE /* VirtualController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C864D492DAD5E4400BA70BE /* virtualcontrollerctl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = virtualcontrollerctl; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C864D542DAD5EE700BA70BE /* ControllerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ControllerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C864D742DAD5F4400BA70BE /* virtualcontrolleragent.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = virtualcontrolleragent.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C864D7D2DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext */ = {isa = PBXFileReference; explicitFileType = "wrapper.driver-extension"; includeInIndex = 0; path = com.sillutility.VirtualController.VirtualControllerDriver.dext; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C864D7F2DAD64B000BA70BE /* DriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DriverKit.framework; path = System/Library/Frameworks/DriverKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -20,6 +63,13 @@
 				GameScene.sks,
 			);
 			target = 2C864D2B2DAD5D6E00BA70BE /* VirtualController macOS */;
+		};
+		2C864D8D2DAD64B000BA70BE /* Exceptions for "VirtualControllerDriver" folder in "VirtualControllerDriver" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2C864D7C2DAD64B000BA70BE /* VirtualControllerDriver */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -37,6 +87,24 @@
 			path = "VirtualController macOS";
 			sourceTree = "<group>";
 		};
+		2C864D4A2DAD5E4400BA70BE /* virtualcontrollerctl */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = virtualcontrollerctl;
+			sourceTree = "<group>";
+		};
+		2C864D552DAD5EE700BA70BE /* ControllerApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ControllerApp;
+			sourceTree = "<group>";
+		};
+		2C864D812DAD64B000BA70BE /* VirtualControllerDriver */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2C864D8D2DAD64B000BA70BE /* Exceptions for "VirtualControllerDriver" folder in "VirtualControllerDriver" target */,
+			);
+			path = VirtualControllerDriver;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +112,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C864D462DAD5E4400BA70BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C864D512DAD5EE700BA70BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C864D712DAD5F4400BA70BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C864D7A2DAD64B000BA70BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C864D802DAD64B000BA70BE /* DriverKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +152,10 @@
 			children = (
 				2C864D222DAD5D6C00BA70BE /* VirtualController Shared */,
 				2C864D2E2DAD5D6E00BA70BE /* VirtualController macOS */,
+				2C864D4A2DAD5E4400BA70BE /* virtualcontrollerctl */,
+				2C864D552DAD5EE700BA70BE /* ControllerApp */,
+				2C864D812DAD64B000BA70BE /* VirtualControllerDriver */,
+				2C864D7E2DAD64B000BA70BE /* Frameworks */,
 				2C864D2D2DAD5D6E00BA70BE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,11 +164,33 @@
 			isa = PBXGroup;
 			children = (
 				2C864D2C2DAD5D6E00BA70BE /* VirtualController.app */,
+				2C864D492DAD5E4400BA70BE /* virtualcontrollerctl */,
+				2C864D542DAD5EE700BA70BE /* ControllerApp.app */,
+				2C864D742DAD5F4400BA70BE /* virtualcontrolleragent.bundle */,
+				2C864D7D2DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2C864D7E2DAD64B000BA70BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C864D7F2DAD64B000BA70BE /* DriverKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2C864D782DAD64B000BA70BE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		2C864D2B2DAD5D6E00BA70BE /* VirtualController macOS */ = {
@@ -77,10 +200,12 @@
 				2C864D282DAD5D6E00BA70BE /* Sources */,
 				2C864D292DAD5D6E00BA70BE /* Frameworks */,
 				2C864D2A2DAD5D6E00BA70BE /* Resources */,
+				2C864D8E2DAD64B000BA70BE /* Embed System Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2C864D882DAD64B000BA70BE /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				2C864D2E2DAD5D6E00BA70BE /* VirtualController macOS */,
@@ -92,6 +217,92 @@
 			productReference = 2C864D2C2DAD5D6E00BA70BE /* VirtualController.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2C864D482DAD5E4400BA70BE /* virtualcontrollerctl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C864D4D2DAD5E4400BA70BE /* Build configuration list for PBXNativeTarget "virtualcontrollerctl" */;
+			buildPhases = (
+				2C864D452DAD5E4400BA70BE /* Sources */,
+				2C864D462DAD5E4400BA70BE /* Frameworks */,
+				2C864D472DAD5E4400BA70BE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2C864D4A2DAD5E4400BA70BE /* virtualcontrollerctl */,
+			);
+			name = virtualcontrollerctl;
+			packageProductDependencies = (
+			);
+			productName = virtualcontrollerctl;
+			productReference = 2C864D492DAD5E4400BA70BE /* virtualcontrollerctl */;
+			productType = "com.apple.product-type.tool";
+		};
+		2C864D532DAD5EE700BA70BE /* ControllerApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C864D6D2DAD5EE900BA70BE /* Build configuration list for PBXNativeTarget "ControllerApp" */;
+			buildPhases = (
+				2C864D502DAD5EE700BA70BE /* Sources */,
+				2C864D512DAD5EE700BA70BE /* Frameworks */,
+				2C864D522DAD5EE700BA70BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2C864D552DAD5EE700BA70BE /* ControllerApp */,
+			);
+			name = ControllerApp;
+			packageProductDependencies = (
+			);
+			productName = ControllerApp;
+			productReference = 2C864D542DAD5EE700BA70BE /* ControllerApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2C864D732DAD5F4400BA70BE /* virtualcontrolleragent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C864D752DAD5F4400BA70BE /* Build configuration list for PBXNativeTarget "virtualcontrolleragent" */;
+			buildPhases = (
+				2C864D702DAD5F4400BA70BE /* Sources */,
+				2C864D712DAD5F4400BA70BE /* Frameworks */,
+				2C864D722DAD5F4400BA70BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = virtualcontrolleragent;
+			packageProductDependencies = (
+			);
+			productName = virtualcontrolleragent;
+			productReference = 2C864D742DAD5F4400BA70BE /* virtualcontrolleragent.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		2C864D7C2DAD64B000BA70BE /* VirtualControllerDriver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C864D8A2DAD64B000BA70BE /* Build configuration list for PBXNativeTarget "VirtualControllerDriver" */;
+			buildPhases = (
+				2C864D782DAD64B000BA70BE /* Headers */,
+				2C864D792DAD64B000BA70BE /* Sources */,
+				2C864D7A2DAD64B000BA70BE /* Frameworks */,
+				2C864D7B2DAD64B000BA70BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2C864D812DAD64B000BA70BE /* VirtualControllerDriver */,
+			);
+			name = VirtualControllerDriver;
+			packageProductDependencies = (
+			);
+			productName = VirtualControllerDriver;
+			productReference = 2C864D7D2DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext */;
+			productType = "com.apple.product-type.driver-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -99,9 +310,23 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = SLY;
 				LastUpgradeCheck = 1620;
+				ORGANIZATIONNAME = "Silly Utility";
 				TargetAttributes = {
 					2C864D2B2DAD5D6E00BA70BE = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					2C864D482DAD5E4400BA70BE = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					2C864D532DAD5EE700BA70BE = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					2C864D732DAD5F4400BA70BE = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					2C864D7C2DAD64B000BA70BE = {
 						CreatedOnToolsVersion = 16.2;
 					};
 				};
@@ -121,12 +346,37 @@
 			projectRoot = "";
 			targets = (
 				2C864D2B2DAD5D6E00BA70BE /* VirtualController macOS */,
+				2C864D482DAD5E4400BA70BE /* virtualcontrollerctl */,
+				2C864D532DAD5EE700BA70BE /* ControllerApp */,
+				2C864D732DAD5F4400BA70BE /* virtualcontrolleragent */,
+				2C864D7C2DAD64B000BA70BE /* VirtualControllerDriver */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2C864D2A2DAD5D6E00BA70BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C864D522DAD5EE700BA70BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C864D722DAD5F4400BA70BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C864D7B2DAD64B000BA70BE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -143,7 +393,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2C864D452DAD5E4400BA70BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C864D502DAD5EE700BA70BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C864D702DAD5F4400BA70BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C864D792DAD64B000BA70BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C864D882DAD64B000BA70BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C864D7C2DAD64B000BA70BE /* VirtualControllerDriver */;
+			targetProxy = 2C864D872DAD64B000BA70BE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2C864D412DAD5D6E00BA70BE /* Debug */ = {
@@ -313,6 +599,171 @@
 			};
 			name = Release;
 		};
+		2C864D4E2DAD5E4400BA70BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2C864D4F2DAD5E4400BA70BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2C864D6E2DAD5EE900BA70BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.ControllerApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2C864D6F2DAD5EE900BA70BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.ControllerApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2C864D762DAD5F4400BA70BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Silly Utility. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 14.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.virtualcontrolleragent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		2C864D772DAD5F4400BA70BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Silly Utility. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 14.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.virtualcontrolleragent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		2C864D8B2DAD64B000BA70BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
+				DRIVERKIT_DEPLOYMENT_TARGET = 24.2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VirtualControllerDriver/Info.plist;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.VirtualController.VirtualControllerDriver;
+				PRODUCT_NAME = "$(inherited)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = driverkit;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		2C864D8C2DAD64B000BA70BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
+				DRIVERKIT_DEPLOYMENT_TARGET = 24.2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VirtualControllerDriver/Info.plist;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.VirtualController.VirtualControllerDriver;
+				PRODUCT_NAME = "$(inherited)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = driverkit;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -330,6 +781,42 @@
 			buildConfigurations = (
 				2C864D412DAD5D6E00BA70BE /* Debug */,
 				2C864D422DAD5D6E00BA70BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C864D4D2DAD5E4400BA70BE /* Build configuration list for PBXNativeTarget "virtualcontrollerctl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C864D4E2DAD5E4400BA70BE /* Debug */,
+				2C864D4F2DAD5E4400BA70BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C864D6D2DAD5EE900BA70BE /* Build configuration list for PBXNativeTarget "ControllerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C864D6E2DAD5EE900BA70BE /* Debug */,
+				2C864D6F2DAD5EE900BA70BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C864D752DAD5F4400BA70BE /* Build configuration list for PBXNativeTarget "virtualcontrolleragent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C864D762DAD5F4400BA70BE /* Debug */,
+				2C864D772DAD5F4400BA70BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C864D8A2DAD64B000BA70BE /* Build configuration list for PBXNativeTarget "VirtualControllerDriver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C864D8B2DAD64B000BA70BE /* Debug */,
+				2C864D8C2DAD64B000BA70BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
