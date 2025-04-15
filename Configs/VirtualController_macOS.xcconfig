@@ -1,0 +1,3 @@
+// VirtualController_macOS.xcconfig
+
+CODE_SIGN_ENTITLEMENTS = VirtualController_macOS/VirtualController_macOS.entitlements

@@ -1,0 +1,8 @@
+// VirtualController.xcconfig
+
+CODE_SIGN_STYLE[config=Debug] = Automatic
+CODE_SIGN_IDENTITY[config=Debug] = -
+AD_HOC_CODE_SIGNING_ALLOWED[config=Debug] = YES
+DEVELOPMENT_TEAM[config=Debug] =
+
+//CODE_SIGN_ENTITLEMENTS[config=Debug] = DriverKitSampleApp/DriverKitSampleApp.entitlements

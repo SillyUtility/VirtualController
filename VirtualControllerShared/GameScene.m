@@ -1,6 +1,6 @@
 //
 //  GameScene.m
-//  VirtualController Shared
+//  VirtualControllerShared
 //
 //  Created by Eddie Hillenbrand on 4/14/25.
 //

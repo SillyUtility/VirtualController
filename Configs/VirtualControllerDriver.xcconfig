@@ -1,0 +1,2 @@
+// VirtualControllerDriver.xcconfig
+CODE_SIGN_ENTITLEMENTS = VirtualControllerDriver/VirtualControllerDriver.entitlements

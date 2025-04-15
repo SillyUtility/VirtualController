@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  VirtualController macOS
+//  VirtualController_macOS
 //
 //  Created by Eddie Hillenbrand on 4/14/25.
 //

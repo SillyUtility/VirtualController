@@ -54,7 +54,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		2C864D3F2DAD5D6E00BA70BE /* Exceptions for "VirtualController Shared" folder in "VirtualController macOS" target */ = {
+		2C864D3F2DAD5D6E00BA70BE /* Exceptions for "VirtualControllerShared" folder in "VirtualController_macOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Actions.sks,
@@ -62,7 +62,7 @@
 				GameScene.m,
 				GameScene.sks,
 			);
-			target = 2C864D2B2DAD5D6E00BA70BE /* VirtualController macOS */;
+			target = 2C864D2B2DAD5D6E00BA70BE /* VirtualController_macOS */;
 		};
 		2C864D8D2DAD64B000BA70BE /* Exceptions for "VirtualControllerDriver" folder in "VirtualControllerDriver" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -74,17 +74,22 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2C864D222DAD5D6C00BA70BE /* VirtualController Shared */ = {
+		2C7620892DAE9D1C002FD60E /* Configs */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				2C864D3F2DAD5D6E00BA70BE /* Exceptions for "VirtualController Shared" folder in "VirtualController macOS" target */,
-			);
-			path = "VirtualController Shared";
+			path = Configs;
 			sourceTree = "<group>";
 		};
-		2C864D2E2DAD5D6E00BA70BE /* VirtualController macOS */ = {
+		2C864D222DAD5D6C00BA70BE /* VirtualControllerShared */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "VirtualController macOS";
+			exceptions = (
+				2C864D3F2DAD5D6E00BA70BE /* Exceptions for "VirtualControllerShared" folder in "VirtualController_macOS" target */,
+			);
+			path = VirtualControllerShared;
+			sourceTree = "<group>";
+		};
+		2C864D2E2DAD5D6E00BA70BE /* VirtualController_macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = VirtualController_macOS;
 			sourceTree = "<group>";
 		};
 		2C864D4A2DAD5E4400BA70BE /* virtualcontrollerctl */ = {
@@ -150,8 +155,9 @@
 		2C864D1D2DAD5D6C00BA70BE = {
 			isa = PBXGroup;
 			children = (
-				2C864D222DAD5D6C00BA70BE /* VirtualController Shared */,
-				2C864D2E2DAD5D6E00BA70BE /* VirtualController macOS */,
+				2C7620892DAE9D1C002FD60E /* Configs */,
+				2C864D222DAD5D6C00BA70BE /* VirtualControllerShared */,
+				2C864D2E2DAD5D6E00BA70BE /* VirtualController_macOS */,
 				2C864D4A2DAD5E4400BA70BE /* virtualcontrollerctl */,
 				2C864D552DAD5EE700BA70BE /* ControllerApp */,
 				2C864D812DAD64B000BA70BE /* VirtualControllerDriver */,
@@ -193,9 +199,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2C864D2B2DAD5D6E00BA70BE /* VirtualController macOS */ = {
+		2C864D2B2DAD5D6E00BA70BE /* VirtualController_macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C864D402DAD5D6E00BA70BE /* Build configuration list for PBXNativeTarget "VirtualController macOS" */;
+			buildConfigurationList = 2C864D402DAD5D6E00BA70BE /* Build configuration list for PBXNativeTarget "VirtualController_macOS" */;
 			buildPhases = (
 				2C864D282DAD5D6E00BA70BE /* Sources */,
 				2C864D292DAD5D6E00BA70BE /* Frameworks */,
@@ -208,12 +214,12 @@
 				2C864D882DAD64B000BA70BE /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				2C864D2E2DAD5D6E00BA70BE /* VirtualController macOS */,
+				2C864D2E2DAD5D6E00BA70BE /* VirtualController_macOS */,
 			);
-			name = "VirtualController macOS";
+			name = VirtualController_macOS;
 			packageProductDependencies = (
 			);
-			productName = "VirtualController macOS";
+			productName = VirtualController_macOS;
 			productReference = 2C864D2C2DAD5D6E00BA70BE /* VirtualController.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -345,7 +351,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C864D2B2DAD5D6E00BA70BE /* VirtualController macOS */,
+				2C864D2B2DAD5D6E00BA70BE /* VirtualController_macOS */,
 				2C864D482DAD5E4400BA70BE /* virtualcontrollerctl */,
 				2C864D532DAD5EE700BA70BE /* ControllerApp */,
 				2C864D732DAD5F4400BA70BE /* virtualcontrolleragent */,
@@ -434,15 +440,13 @@
 /* Begin XCBuildConfiguration section */
 		2C864D412DAD5D6E00BA70BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2C7620892DAE9D1C002FD60E /* Configs */;
+			baseConfigurationReferenceRelativePath = VirtualController_macOS.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "VirtualController macOS/VirtualController_macOS.entitlements";
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -465,12 +469,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "VirtualController macOS/VirtualController_macOS.entitlements";
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -490,6 +490,8 @@
 		};
 		2C864D432DAD5D6E00BA70BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2C7620892DAE9D1C002FD60E /* Configs */;
+			baseConfigurationReferenceRelativePath = VirtualController.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -602,9 +604,6 @@
 		2C864D4E2DAD5E4400BA70BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
-				ENABLE_HARDENED_RUNTIME = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -614,9 +613,6 @@
 		2C864D4F2DAD5E4400BA70BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
-				ENABLE_HARDENED_RUNTIME = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -628,9 +624,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -657,9 +651,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -685,10 +677,8 @@
 		2C864D762DAD5F4400BA70BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Silly Utility. All rights reserved.";
 				INFOPLIST_KEY_NSPrincipalClass = "";
@@ -707,10 +697,8 @@
 		2C864D772DAD5F4400BA70BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Silly Utility. All rights reserved.";
 				INFOPLIST_KEY_NSPrincipalClass = "";
@@ -728,10 +716,10 @@
 		};
 		2C864D8B2DAD64B000BA70BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2C7620892DAE9D1C002FD60E /* Configs */;
+			baseConfigurationReferenceRelativePath = VirtualControllerDriver.xcconfig;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
 				DRIVERKIT_DEPLOYMENT_TARGET = 24.2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VirtualControllerDriver/Info.plist;
@@ -748,9 +736,7 @@
 		2C864D8C2DAD64B000BA70BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A7JNPZ3RZ7;
 				DRIVERKIT_DEPLOYMENT_TARGET = 24.2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VirtualControllerDriver/Info.plist;
@@ -776,7 +762,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C864D402DAD5D6E00BA70BE /* Build configuration list for PBXNativeTarget "VirtualController macOS" */ = {
+		2C864D402DAD5D6E00BA70BE /* Build configuration list for PBXNativeTarget "VirtualController_macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C864D412DAD5D6E00BA70BE /* Debug */,
