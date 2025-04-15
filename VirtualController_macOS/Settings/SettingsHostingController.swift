@@ -8,10 +8,11 @@
 
 import AppKit
 import SwiftUI
+import os.log
 
 class SettingsHostingController: NSHostingController<SettingsView> {
 	required init?(coder: NSCoder) {
-		NSLog("\(#function)")
+		os_log("\(type(of: self)).\(#function)")
 		super.init(coder: coder, rootView: SettingsView())
 	}
 

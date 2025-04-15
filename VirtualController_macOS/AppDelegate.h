@@ -9,6 +9,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+- (IBAction)showMainWindow:(id)sender;
 - (IBAction)openSettings:(id)sender;
 
 @end

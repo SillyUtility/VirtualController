@@ -9,10 +9,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-	init() {
-		NSLog("\(#function)")
-	}
-    var body: some View {
+	var body: some View {
 		Text("Hello, World!").frame(width: 600, height: 400)
 	}
 }
