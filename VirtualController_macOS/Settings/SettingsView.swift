@@ -16,14 +16,27 @@ func systemImageForState(_ state: DriverState.State) -> (String,  Color) {
 		return ("magnifyingglass", Color.primary)
 	case .missing:
 		return ("square.dashed", Color.orange)
-	case .activating:
-		return ("progress.indicator", Color.primary)
-	//case .needsRestart:
-	//	return "arrow.trianglehead.counterclockwise", Color.orange
+	case .activating, .deactivating, .waitingForUserApproval:
+		return ("clock", Color.primary)
 	case .failedToActivate:
 		return ("exclamationmark.circle", Color.red)
 	case .installed:
 		return ("checkmark.circle", Color.green)
+	case .failedToDeactivate:
+		return ("exclamationmark.circle", Color.red)
+	case .uninstalled:
+		return ("trash.circle", Color.green)
+	case .waitingForReboot:
+		return ("arrow.trianglehead.counterclockwise", Color.orange)
+	case .error:
+		return ("nosign.app", Color.red)
+	}
+}
+
+func canInstall(_ state: DriverState.State) -> Bool {
+	switch state {
+	case .missing, .uninstalled: return true
+	default: return false
 	}
 }
 
@@ -51,9 +64,11 @@ struct SettingsView: View {
 
 			HStack {
 				Button("Install Driver") {
-				}.disabled(true)
+					self.driverController.activateExtension()
+				}.disabled(!canInstall(self.driverController.state))
 				Button("Uninstall Driver") {
-				}.disabled(true)
+					self.driverController.deactivateExtension()
+				}.disabled(self.driverController.state != .installed)
 			}.padding()
 		}.frame(width: 600, height: 400)
 	}

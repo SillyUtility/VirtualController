@@ -1,2 +1,5 @@
 // VirtualControllerDriver.xcconfig
+
+DRIVERKIT_DEPLOYMENT_TARGET = 20.4
+
 CODE_SIGN_ENTITLEMENTS = VirtualControllerDriver/VirtualControllerDriver.entitlements

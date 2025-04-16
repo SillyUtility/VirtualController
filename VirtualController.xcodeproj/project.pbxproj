@@ -728,7 +728,6 @@
 			baseConfigurationReferenceRelativePath = VirtualControllerDriver.xcconfig;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
-				DRIVERKIT_DEPLOYMENT_TARGET = 24.2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VirtualControllerDriver/Info.plist;
 				MARKETING_VERSION = 1.0;
@@ -745,7 +744,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
-				DRIVERKIT_DEPLOYMENT_TARGET = 24.2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VirtualControllerDriver/Info.plist;
 				MARKETING_VERSION = 1.0;
