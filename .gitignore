@@ -76,3 +76,5 @@ Configs/Local.xcconfig
 /Docs
 /Release
 /TestFlight
+
+/Assets/copyright

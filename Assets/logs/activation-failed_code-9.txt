@@ -1,0 +1,109 @@
+Log from driver activation (install) failed:
+
+Generates error with domain=OSSystemExtensionErrorDomain, code=9. Code
+is OSSystemExtensionErrorValidationFailed.
+
+The big clue from the logs below:
+
+    extension failed category property check: extensions belonging to
+    the com.apple.system_extension.driver_extension category require a
+    later version of DriverKit to launch
+
+Meaning the DriverKit Deployment Target was set too high.
+
+
+
+default	13:56:36.202301-0500	VirtualController	DriverController.activateExtension()
+default	13:56:36.202404-0500	VirtualController	[0x6000003091d0] activating connection: mach=true listener=false peer=false name=com.apple.sysextd
+default	13:56:36.212578-0500	VirtualController	[0x147e45a70] activating connection: mach=false listener=false peer=false name=(anonymous)
+default	13:56:36.212676-0500	VirtualController	[0x6000003091d0] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+default	13:56:36.212945-0500	sysextd	client activation request for com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.212982-0500	sysextd	attempting to realize extension with identifier com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.217159-0500	sysextd	realizing target path: file:///Users/eddie/Library/Developer/Xcode/DerivedData/VirtualController-gadfntkwqcvlfpfectormacdhjfo/Build/Products/Debug/VirtualController.app/Contents/Library/SystemExtensions/com.sillutility.VirtualController.VirtualControllerDriver.dext/
+default	13:56:36.222090-0500	sysextd	retrieved bundle code signing info: SecStaticCodeSigningInfo(entitlements: ["com.apple.developer.driverkit": 1, "com.apple.developer.driverkit.allow-any-userclient-access": 1], teamID: sysextd.TeamIDType.none, cdHashes: ["867fbe62d2a4773b5b3677321d6d32f23c75a1e4": sysextd.ArchInfo(name: "arm64", cputype: 16777228, cpusubtype: 0), "1959ff9bd0f0e044e232db04e5a17b95738c466d": sysextd.ArchInfo(name: "x86_64", cputype: 16777223, cpusubtype: 3)], signingIdentifier: "com.sillutility.VirtualController.VirtualControllerDriver")
+default	13:56:36.222388-0500	sysextd	/Users/eddie/Library/Developer/Xcode/DerivedData/VirtualController-gadfntkwqcvlfpfectormacdhjfo/Build/Products/Debug/VirtualController.app/Contents/Library/SystemExtensions/com.sillutility.VirtualController.VirtualControllerDriver.dext: package type not `SYSX`
+default	13:56:36.222418-0500	sysextd	/Users/eddie/Library/Developer/Xcode/DerivedData/VirtualController-gadfntkwqcvlfpfectormacdhjfo/Build/Products/Debug/VirtualController.app/Contents/Library/SystemExtensions/com.sillutility.VirtualController.VirtualControllerDriver.dext: package type not `SYSX`
+default	13:56:36.224828-0500	sysextd	retrieved bundle code signing info: SecStaticCodeSigningInfo(entitlements: ["com.apple.developer.system-extension.install": 1, "com.apple.security.app-sandbox": 1, "com.apple.security.files.user-selected.read-only": 1, "com.apple.security.get-task-allow": 1, "com.apple.developer.driverkit.communicates-with-drivers": 1], teamID: sysextd.TeamIDType.none, cdHashes: ["541895969721654141967f7ebc94af4442a60fcf": sysextd.ArchInfo(name: "arm64", cputype: 16777228, cpusubtype: 0)], signingIdentifier: "com.sillutility.VirtualController")
+default	13:56:36.225527-0500	sysextd	take reference:
+    reference: (Optional("file:///.file/id=6571367.156595077/") + <..none..> + com.sillutility.VirtualController)
+    references: [(Optional("file:///.file/id=6571367.156595077/") + <..none..> + com.sillutility.VirtualController)]
+    result: true
+default	13:56:36.225560-0500	sysextd	staging extension with identifier com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.225594-0500	sysextd	extension <..none..> com.sillutility.VirtualController.VirtualControllerDriver (1.0/1) advancing state from realizing to staging
+default	13:56:36.227541-0500	sysextd	Importing content from application to staging area
+  originPath: /Users/eddie/Library/Developer/Xcode/DerivedData/VirtualController-gadfntkwqcvlfpfectormacdhjfo/Build/Products/Debug/VirtualController.app/Contents/Library/SystemExtensions/com.sillutility.VirtualController.VirtualControllerDriver.dext,
+  uniqueIdentifier: 88ABD1AF-FEEC-4E17-B1DF-68E85961E91D
+default	13:56:36.227801-0500	sysextd	Bundle path: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext
+default	13:56:36.228720-0500	sysextd	Copied and processing: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/_CodeSignature/CodeResources
+default	13:56:36.228780-0500	sysextd	Imported: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/_CodeSignature/CodeResources
+default	13:56:36.228955-0500	sysextd	Copied and processing: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/_CodeSignature
+default	13:56:36.229001-0500	sysextd	Imported: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/_CodeSignature
+default	13:56:36.229682-0500	sysextd	Copied and processing: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.229768-0500	sysextd	Imported: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.229974-0500	sysextd	Copied and processing: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/Info.plist
+default	13:56:36.230020-0500	sysextd	Imported: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/Info.plist
+default	13:56:36.230170-0500	sysextd	Copied and processing: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext
+default	13:56:36.230217-0500	sysextd	Imported: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext
+default	13:56:36.230252-0500	sysextd	extension <..none..> com.sillutility.VirtualController.VirtualControllerDriver (1.0/1) advancing state from staging to validating
+default	13:56:36.232923-0500	sysextd	making activation decision for extension with teamID none, identifier com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.232945-0500	sysextd	no related kext found for sysex `com.sillutility.VirtualController.VirtualControllerDriver`
+default	13:56:36.232978-0500	sysextd	validating extension with identifier com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.233292-0500	sysextd	resolve code signing information for: file:///Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/
+default	13:56:36.244865-0500	sysextd	retrieved bundle code signing info: SecStaticCodeSigningInfo(entitlements: ["com.apple.developer.driverkit.allow-any-userclient-access": 1, "com.apple.developer.driverkit": 1], teamID: sysextd.TeamIDType.none, cdHashes: ["1959ff9bd0f0e044e232db04e5a17b95738c466d": sysextd.ArchInfo(name: "x86_64", cputype: 16777223, cpusubtype: 3), "867fbe62d2a4773b5b3677321d6d32f23c75a1e4": sysextd.ArchInfo(name: "arm64", cputype: 16777228, cpusubtype: 0)], signingIdentifier: "com.sillutility.VirtualController.VirtualControllerDriver")
+default	13:56:36.245167-0500	sysextd	extension <..none..> com.sillutility.VirtualController.VirtualControllerDriver (1.0/1) advancing state from validating to validating_by_category
+default	13:56:36.246656-0500	sysextd	com.sillutility.VirtualController.VirtualControllerDriver: extension failed category property check: extensions belonging to the com.apple.system_extension.driver_extension category require a later version of DriverKit to launch
+default	13:56:36.246834-0500	sysextd	uninstalling invalid extension com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.246855-0500	sysextd	extension <..none..> com.sillutility.VirtualController.VirtualControllerDriver (1.0/1) advancing state from validating_by_category to uninstalling
+default	13:56:36.247525-0500	sysextd	attempting to delete staged bundle: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext
+default	13:56:36.248193-0500	sysextd	extension <..none..> com.sillutility.VirtualController.VirtualControllerDriver (1.0/1) advancing state from uninstalling to uninstalled
+default	13:56:36.249296-0500	sysextd	finished uninstalling extension com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.249330-0500	sysextd	waiting for external validation of extension with identifier com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.249397-0500	sysextd	observer for 'com.sillutility.VirtualController' reached error: uninstalling
+default	13:56:36.249577-0500	VirtualController	DriverController.request(_:didFailWithError:) error=Error Domain=OSSystemExtensionErrorDomain Code=9 "(null)"
+default	13:56:36.202301-0500	VirtualController	DriverController.activateExtension()
+default	13:56:36.202404-0500	VirtualController	[0x6000003091d0] activating connection: mach=true listener=false peer=false name=com.apple.sysextd
+default	13:56:36.212578-0500	VirtualController	[0x147e45a70] activating connection: mach=false listener=false peer=false name=(anonymous)
+default	13:56:36.212676-0500	VirtualController	[0x6000003091d0] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+default	13:56:36.212945-0500	sysextd	client activation request for com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.212982-0500	sysextd	attempting to realize extension with identifier com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.217159-0500	sysextd	realizing target path: file:///Users/eddie/Library/Developer/Xcode/DerivedData/VirtualController-gadfntkwqcvlfpfectormacdhjfo/Build/Products/Debug/VirtualController.app/Contents/Library/SystemExtensions/com.sillutility.VirtualController.VirtualControllerDriver.dext/
+default	13:56:36.222090-0500	sysextd	retrieved bundle code signing info: SecStaticCodeSigningInfo(entitlements: ["com.apple.developer.driverkit": 1, "com.apple.developer.driverkit.allow-any-userclient-access": 1], teamID: sysextd.TeamIDType.none, cdHashes: ["867fbe62d2a4773b5b3677321d6d32f23c75a1e4": sysextd.ArchInfo(name: "arm64", cputype: 16777228, cpusubtype: 0), "1959ff9bd0f0e044e232db04e5a17b95738c466d": sysextd.ArchInfo(name: "x86_64", cputype: 16777223, cpusubtype: 3)], signingIdentifier: "com.sillutility.VirtualController.VirtualControllerDriver")
+default	13:56:36.222388-0500	sysextd	/Users/eddie/Library/Developer/Xcode/DerivedData/VirtualController-gadfntkwqcvlfpfectormacdhjfo/Build/Products/Debug/VirtualController.app/Contents/Library/SystemExtensions/com.sillutility.VirtualController.VirtualControllerDriver.dext: package type not `SYSX`
+default	13:56:36.222418-0500	sysextd	/Users/eddie/Library/Developer/Xcode/DerivedData/VirtualController-gadfntkwqcvlfpfectormacdhjfo/Build/Products/Debug/VirtualController.app/Contents/Library/SystemExtensions/com.sillutility.VirtualController.VirtualControllerDriver.dext: package type not `SYSX`
+default	13:56:36.224828-0500	sysextd	retrieved bundle code signing info: SecStaticCodeSigningInfo(entitlements: ["com.apple.developer.system-extension.install": 1, "com.apple.security.app-sandbox": 1, "com.apple.security.files.user-selected.read-only": 1, "com.apple.security.get-task-allow": 1, "com.apple.developer.driverkit.communicates-with-drivers": 1], teamID: sysextd.TeamIDType.none, cdHashes: ["541895969721654141967f7ebc94af4442a60fcf": sysextd.ArchInfo(name: "arm64", cputype: 16777228, cpusubtype: 0)], signingIdentifier: "com.sillutility.VirtualController")
+default	13:56:36.225527-0500	sysextd	take reference:
+    reference: (Optional("file:///.file/id=6571367.156595077/") + <..none..> + com.sillutility.VirtualController)
+    references: [(Optional("file:///.file/id=6571367.156595077/") + <..none..> + com.sillutility.VirtualController)]
+    result: true
+default	13:56:36.225560-0500	sysextd	staging extension with identifier com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.225594-0500	sysextd	extension <..none..> com.sillutility.VirtualController.VirtualControllerDriver (1.0/1) advancing state from realizing to staging
+default	13:56:36.227541-0500	sysextd	Importing content from application to staging area
+  originPath: /Users/eddie/Library/Developer/Xcode/DerivedData/VirtualController-gadfntkwqcvlfpfectormacdhjfo/Build/Products/Debug/VirtualController.app/Contents/Library/SystemExtensions/com.sillutility.VirtualController.VirtualControllerDriver.dext,
+  uniqueIdentifier: 88ABD1AF-FEEC-4E17-B1DF-68E85961E91D
+default	13:56:36.227801-0500	sysextd	Bundle path: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext
+default	13:56:36.228720-0500	sysextd	Copied and processing: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/_CodeSignature/CodeResources
+default	13:56:36.228780-0500	sysextd	Imported: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/_CodeSignature/CodeResources
+default	13:56:36.228955-0500	sysextd	Copied and processing: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/_CodeSignature
+default	13:56:36.229001-0500	sysextd	Imported: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/_CodeSignature
+default	13:56:36.229682-0500	sysextd	Copied and processing: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.229768-0500	sysextd	Imported: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.229974-0500	sysextd	Copied and processing: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/Info.plist
+default	13:56:36.230020-0500	sysextd	Imported: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/Info.plist
+default	13:56:36.230170-0500	sysextd	Copied and processing: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext
+default	13:56:36.230217-0500	sysextd	Imported: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext
+default	13:56:36.230252-0500	sysextd	extension <..none..> com.sillutility.VirtualController.VirtualControllerDriver (1.0/1) advancing state from staging to validating
+default	13:56:36.232923-0500	sysextd	making activation decision for extension with teamID none, identifier com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.232945-0500	sysextd	no related kext found for sysex `com.sillutility.VirtualController.VirtualControllerDriver`
+default	13:56:36.232978-0500	sysextd	validating extension with identifier com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.233292-0500	sysextd	resolve code signing information for: file:///Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext/
+default	13:56:36.244865-0500	sysextd	retrieved bundle code signing info: SecStaticCodeSigningInfo(entitlements: ["com.apple.developer.driverkit.allow-any-userclient-access": 1, "com.apple.developer.driverkit": 1], teamID: sysextd.TeamIDType.none, cdHashes: ["1959ff9bd0f0e044e232db04e5a17b95738c466d": sysextd.ArchInfo(name: "x86_64", cputype: 16777223, cpusubtype: 3), "867fbe62d2a4773b5b3677321d6d32f23c75a1e4": sysextd.ArchInfo(name: "arm64", cputype: 16777228, cpusubtype: 0)], signingIdentifier: "com.sillutility.VirtualController.VirtualControllerDriver")
+default	13:56:36.245167-0500	sysextd	extension <..none..> com.sillutility.VirtualController.VirtualControllerDriver (1.0/1) advancing state from validating to validating_by_category
+default	13:56:36.246656-0500	sysextd	com.sillutility.VirtualController.VirtualControllerDriver: extension failed category property check: extensions belonging to the com.apple.system_extension.driver_extension category require a later version of DriverKit to launch
+default	13:56:36.246834-0500	sysextd	uninstalling invalid extension com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.246855-0500	sysextd	extension <..none..> com.sillutility.VirtualController.VirtualControllerDriver (1.0/1) advancing state from validating_by_category to uninstalling
+default	13:56:36.247525-0500	sysextd	attempting to delete staged bundle: /Library/SystemExtensions/.staging/88ABD1AF-FEEC-4E17-B1DF-68E85961E91D/com.sillutility.VirtualController.VirtualControllerDriver.dext
+default	13:56:36.248193-0500	sysextd	extension <..none..> com.sillutility.VirtualController.VirtualControllerDriver (1.0/1) advancing state from uninstalling to uninstalled
+default	13:56:36.249296-0500	sysextd	finished uninstalling extension com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.249330-0500	sysextd	waiting for external validation of extension with identifier com.sillutility.VirtualController.VirtualControllerDriver
+default	13:56:36.249397-0500	sysextd	observer for 'com.sillutility.VirtualController' reached error: uninstalling
+default	13:56:36.249577-0500	VirtualController	DriverController.request(_:didFailWithError:) error=Error Domain=OSSystemExtensionErrorDomain Code=9 "(null)"
