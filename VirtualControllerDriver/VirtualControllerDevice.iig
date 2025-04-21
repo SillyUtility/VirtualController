@@ -1,0 +1,45 @@
+//
+//	VirtualControllerDevice.iig
+//	VirtualController
+//
+//	Created by Eddie Hillenbrand on 4/20/25.
+//	Copyright © 2025 Silly Utility. All rights reserved.
+//
+
+#ifndef VirtualControllerDevice_h
+#define VirtualControllerDevice_h
+
+#include <Availability.h>
+#include <HIDDriverKit/IOUserHIDDevice.iig>
+
+class VirtualControllerDevice: public IOUserHIDDevice
+{
+public:
+	virtual bool
+	init() override;
+
+	virtual void
+	free() override;
+
+	/* IOUserHIDDevice subclasses should not override Start. Use the
+	   handleStart method instead. */
+
+	// virtual kern_return_t
+	// Start(IOService * provider) override;
+
+	virtual kern_return_t
+	Stop(IOService* provider) override;
+
+	/* IOUserHIDDevice */
+
+	virtual bool
+	handleStart(IOService *provider) override;
+
+	virtual OSDictionary *
+	newDeviceDescription(void) override;
+
+	virtual OSData *
+	newReportDescriptor(void) override;
+};
+
+#endif /* VirtualControllerDevice_h */

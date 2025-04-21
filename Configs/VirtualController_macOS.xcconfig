@@ -1,3 +1,5 @@
 // VirtualController_macOS.xcconfig
 
+PRODUCT_BUNDLE_IDENTIFIER = com.sillyutility.VirtualController
+
 CODE_SIGN_ENTITLEMENTS = VirtualController_macOS/VirtualController_macOS.entitlements

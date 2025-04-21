@@ -6,6 +6,8 @@
 	<dict>
 		<key>VirtualControllerDriver</key>
 		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 			<key>CFBundleIdentifierKernel</key>
 			<string>com.apple.kpi.iokit</string>
 			<key>IOClass</key>
@@ -20,9 +22,16 @@
 			<string>VirtualControllerDriver</string>
 			<key>IOUserServerName</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			<key>UserClientProperties</key>
+			<dict>
+				<key>IOClass</key>
+				<string>IOUserClient</string>
+				<key>IOUserClass</key>
+				<string>VirtualControllerDriverUserClient</string>
+			</dict>
 		</dict>
 	</dict>
 	<key>OSBundleUsageDescription</key>
-	<string></string>
+	<string>Virtual game controller device driver</string>
 </dict>
 </plist>

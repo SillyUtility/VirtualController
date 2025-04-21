@@ -2,4 +2,8 @@
 
 DRIVERKIT_DEPLOYMENT_TARGET = 20.4
 
-CODE_SIGN_ENTITLEMENTS = VirtualControllerDriver/VirtualControllerDriver.entitlements
+PRODUCT_BUNDLE_IDENTIFIER = com.sillyutility.VirtualController.VirtualControllerDriver
+
+CODE_SIGN_ENTITLEMENTS = VirtualControllerDriver/Driver-Debug.entitlements
+//CODE_SIGN_ENTITLEMENTS[config=Debug] = VirtualControllerDriver/Driver-Debug.entitlements
+//CODE_SIGN_ENTITLEMENTS[config=Release] = VirtualControllerDriver/Driver-Release.entitlements

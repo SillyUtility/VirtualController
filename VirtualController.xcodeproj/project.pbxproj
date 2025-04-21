@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C73B8942DB3A31B0072F7FB /* HIDDriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73B8932DB3A31B0072F7FB /* HIDDriverKit.framework */; };
 		2C864D802DAD64B000BA70BE /* DriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C864D7F2DAD64B000BA70BE /* DriverKit.framework */; };
-		2C864D892DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 2C864D7D2DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2C864D892DAD64B000BA70BE /* com.sillyutility.VirtualController.VirtualControllerDriver.dext in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 2C864D7D2DAD64B000BA70BE /* com.sillyutility.VirtualController.VirtualControllerDriver.dext */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,7 @@
 			dstPath = "$(SYSTEM_EXTENSIONS_FOLDER_PATH)";
 			dstSubfolderSpec = 16;
 			files = (
-				2C864D892DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext in Embed System Extensions */,
+				2C864D892DAD64B000BA70BE /* com.sillyutility.VirtualController.VirtualControllerDriver.dext in Embed System Extensions */,
 			);
 			name = "Embed System Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,11 +46,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C73B8932DB3A31B0072F7FB /* HIDDriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HIDDriverKit.framework; path = Platforms/DriverKit.platform/Developer/SDKs/DriverKit24.2.sdk/System/DriverKit/System/Library/Frameworks/HIDDriverKit.framework; sourceTree = DEVELOPER_DIR; };
 		2C864D2C2DAD5D6E00BA70BE /* VirtualController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C864D492DAD5E4400BA70BE /* virtualcontrollerctl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = virtualcontrollerctl; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C864D542DAD5EE700BA70BE /* ControllerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ControllerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C864D742DAD5F4400BA70BE /* virtualcontrolleragent.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = virtualcontrolleragent.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C864D7D2DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext */ = {isa = PBXFileReference; explicitFileType = "wrapper.driver-extension"; includeInIndex = 0; path = com.sillutility.VirtualController.VirtualControllerDriver.dext; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C864D7D2DAD64B000BA70BE /* com.sillyutility.VirtualController.VirtualControllerDriver.dext */ = {isa = PBXFileReference; explicitFileType = "wrapper.driver-extension"; includeInIndex = 0; path = com.sillyutility.VirtualController.VirtualControllerDriver.dext; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C864D7F2DAD64B000BA70BE /* DriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DriverKit.framework; path = System/Library/Frameworks/DriverKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -146,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C864D802DAD64B000BA70BE /* DriverKit.framework in Frameworks */,
+				2C73B8942DB3A31B0072F7FB /* HIDDriverKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +176,7 @@
 				2C864D492DAD5E4400BA70BE /* virtualcontrollerctl */,
 				2C864D542DAD5EE700BA70BE /* ControllerApp.app */,
 				2C864D742DAD5F4400BA70BE /* virtualcontrolleragent.bundle */,
-				2C864D7D2DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext */,
+				2C864D7D2DAD64B000BA70BE /* com.sillyutility.VirtualController.VirtualControllerDriver.dext */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 		2C864D7E2DAD64B000BA70BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C73B8932DB3A31B0072F7FB /* HIDDriverKit.framework */,
 				2C864D7F2DAD64B000BA70BE /* DriverKit.framework */,
 			);
 			name = Frameworks;
@@ -306,7 +310,7 @@
 			packageProductDependencies = (
 			);
 			productName = VirtualControllerDriver;
-			productReference = 2C864D7D2DAD64B000BA70BE /* com.sillutility.VirtualController.VirtualControllerDriver.dext */;
+			productReference = 2C864D7D2DAD64B000BA70BE /* com.sillyutility.VirtualController.VirtualControllerDriver.dext */;
 			productType = "com.apple.product-type.driver-extension";
 		};
 /* End PBXNativeTarget section */
@@ -459,7 +463,6 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.7;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.VirtualController;
 				PRODUCT_NAME = VirtualController;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -487,7 +490,6 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.7;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.VirtualController;
 				PRODUCT_NAME = VirtualController;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -646,7 +648,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.ControllerApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillyutility.ControllerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -673,7 +675,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.ControllerApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillyutility.ControllerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -693,7 +695,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 14.7;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.virtualcontrolleragent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillyutility.virtualcontrolleragent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -713,7 +715,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 14.7;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.virtualcontrolleragent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillyutility.virtualcontrolleragent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -728,10 +730,13 @@
 			baseConfigurationReferenceRelativePath = VirtualControllerDriver.xcconfig;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/System/DriverKit/System/Library/Frameworks",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VirtualControllerDriver/Info.plist;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.VirtualController.VirtualControllerDriver;
 				PRODUCT_NAME = "$(inherited)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = driverkit;
@@ -744,10 +749,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/System/DriverKit/System/Library/Frameworks",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VirtualControllerDriver/Info.plist;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sillutility.VirtualController.VirtualControllerDriver;
 				PRODUCT_NAME = "$(inherited)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = driverkit;
