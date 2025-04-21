@@ -49,6 +49,7 @@ VirtualControllerDriver::free()
 	Log("%{public}s", __func__);
 
 	OSSafeReleaseNULL(ivars->userClient);
+	OSSafeReleaseNULL(ivars->device);
 	IOSafeDeleteNULL(ivars, VirtualControllerDriver_IVars, 1);
 
 	super::free();
