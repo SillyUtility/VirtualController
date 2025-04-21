@@ -32,7 +32,7 @@
 #define Log(fmt, ...) os_log(OS_LOG_DEFAULT, "[VirtualControllerDevice] " fmt "\n", ##__VA_ARGS__)
 
 struct VirtualControllerDevice_IVars {
-	VirtualControllerDriverUserClient *userClient = nullptr;
+	VirtualControllerDriver *driver = nullptr;
 };
 
 bool
@@ -59,7 +59,7 @@ VirtualControllerDevice::free()
 {
 	Log("%{public}s", __func__);
 
-	OSSafeReleaseNULL(ivars->userClient);
+	OSSafeReleaseNULL(ivars->driver);
 	IOSafeDeleteNULL(ivars, VirtualControllerDevice_IVars, 1);
 
 	super::free();
@@ -92,8 +92,8 @@ VirtualControllerDevice::handleStart(IOService *provider)
 		goto Exit;
 	}
 
-	ivars->userClient = OSDynamicCast(VirtualControllerDriverUserClient, provider);
-	if (!ivars->userClient) {
+	ivars->driver = OSDynamicCast(VirtualControllerDriver, provider);
+	if (!ivars->driver) {
 		Log("Provider is the wrong type");
 		ret = false;
 		goto Exit;

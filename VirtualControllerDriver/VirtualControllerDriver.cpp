@@ -12,6 +12,7 @@
 #include <DriverKit/IOLib.h>
 
 #include "VirtualControllerDriver.h"
+#include "VirtualControllerDevice.h"
 #include "VirtualControllerDriverUserClient.h"
 
 #include "Defines.h"
@@ -20,6 +21,7 @@
 
 struct VirtualControllerDriver_IVars {
 	VirtualControllerDriverUserClient *userClient = nullptr;
+	VirtualControllerDevice *device = nullptr;
 };
 
 bool
@@ -65,6 +67,12 @@ VirtualControllerDriver::Start_Impl(IOService *provider)
 		goto Exit;
 	}
 
+	ret = AttachNewVirtualDevice();
+	if (ret != kIOReturnSuccess) {
+		Log("Unable to attach device; error: 0x%08x.", ret);
+		goto Exit;
+	}
+
 	ret = RegisterService();
 	if (ret != kIOReturnSuccess) {
 		Log("RegisterService failed with error: 0x%08x.", ret);
@@ -107,6 +115,32 @@ VirtualControllerDriver::NewUserClient_Impl(uint32_t type, IOUserClient **userCl
 	if (*userClient == NULL) {
 		Log("Failed to cast new client");
 		OSSafeReleaseNULL(client);
+		ret = kIOReturnError;
+		goto Exit;
+	}
+
+Exit:
+	return ret;
+}
+
+kern_return_t
+VirtualControllerDriver::AttachNewVirtualDevice()
+{
+	kern_return_t ret = kIOReturnSuccess;
+	IOService *device = nullptr;
+
+	Log("%{public}s", __func__);
+
+	ret = Create(this, "VirtualDeviceProperties", &device);
+	if (ret != kIOReturnSuccess) {
+		Log("Failed to create new virtual device with error: 0x%08x", ret);
+		goto Exit;
+	}
+
+	ivars->device = OSDynamicCast(VirtualControllerDevice, device);
+	if (!ivars->device) {
+		Log("Unexpected device type");
+		OSSafeReleaseNULL(device);
 		ret = kIOReturnError;
 		goto Exit;
 	}

@@ -32,6 +32,13 @@ public:
 
 	virtual kern_return_t
 	NewUserClient(uint32_t type, IOUserClient** userClient) override;
+
+
+	/* VirtualControllerDriver */
+
+	kern_return_t
+	AttachNewVirtualDevice() LOCALONLY;
+
 };
 
 #endif /* VirtualControllerDriver_h */

@@ -29,6 +29,10 @@ Use `ioreg` to ensure the IO object graph matches your expectation as
 configured in the driver's `Info.plist` and the graph you construct
 within the driver's implementation.
 
+Filter out everything but messages from the driver:
+
+	log stream --style compact --predicate 'process == "kernel" and eventMessage contains "[VirtualController"' --info --debug
+
 # Where is the `IMPL` macro?
 
 From `DriverKit/OSObject.igg`:
