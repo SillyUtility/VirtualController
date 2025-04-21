@@ -17,16 +17,15 @@ class DriverState {
 		case missing
 		case installed
 
-		// activation
 		case activating
 		case failedToActivate
+		case watingForActivationApproval
 
-		// deactivation
 		case deactivating
 		case failedToDeactivate
+		case watingForDeactivationApproval
 		case uninstalled
 
-		case waitingForUserApproval
 		case waitingForReboot
 
 		case error
@@ -38,17 +37,13 @@ class DriverState {
 		case checkDidNotFindDriver
 		case checkFoundDriver
 
-		// activation events
 		case activationBegan
-		case activationFailed
-		case activationNeedsUserApproval
-		case activationNeedsReboot
-		case activationFinished
-
-		// deactivation events
 		case deactivationBegan
-		case deactivationFailed
-		case deactivationFinished
+
+		case actionFailed
+		case actionNeedsApproval
+		case actionNeedsReboot
+		case actionSucceded
 	}
 
 	static func transition(_ state: State, _ event: Event) -> State {
@@ -71,10 +66,10 @@ class DriverState {
 			}
 		case .activating:
 			switch event {
-			case .activationFailed: return .failedToActivate
-			case .activationNeedsUserApproval: return .waitingForUserApproval
-			case .activationNeedsReboot: return .waitingForReboot
-			case .activationFinished: return .installed
+			case .actionFailed: return .failedToActivate
+			case .actionNeedsApproval: return .watingForActivationApproval
+			case .actionNeedsReboot: return .waitingForReboot
+			case .actionSucceded: return .installed
 			default: return .error
 			}
 		case .failedToActivate:
@@ -93,8 +88,10 @@ class DriverState {
 			}
 		case .deactivating:
 			switch event {
-			case .deactivationFailed: return .failedToDeactivate
-			case .deactivationFinished: return .uninstalled
+			case .actionFailed: return .failedToDeactivate
+			case .actionNeedsApproval: return .watingForDeactivationApproval
+			case .actionNeedsReboot: return .waitingForReboot
+			case .actionSucceded: return .uninstalled
 			default: return .error
 			}
 		case .failedToDeactivate:
@@ -110,14 +107,16 @@ class DriverState {
 			case .activationBegan: return .activating
 			default: return .error
 			}
-		case .waitingForUserApproval:
+		case .watingForActivationApproval:
 			switch event {
-			case .checkDidNotFindDriver: return .missing
-			case .checkFoundDriver: return .installed
-			case .activationFailed: return .failedToActivate
-			case .activationFinished: return .installed
-			case .deactivationFailed: return .failedToDeactivate
-			case .deactivationFinished: return .uninstalled
+			case .actionFailed: return .failedToActivate
+			case .actionSucceded: return .installed
+			default: return .error
+			}
+		case .watingForDeactivationApproval:
+			switch event {
+			case .actionFailed: return .failedToDeactivate
+			case .actionSucceded: return .uninstalled
 			default: return .error
 			}
 		case .waitingForReboot: return .waitingForReboot
@@ -168,8 +167,11 @@ class DriverController: NSObject {
 		case .uninstalled:
 			return String(localized: "Driver uninstalled.",
 						  comment: "Driver successfully removed.")
-		case .waitingForUserApproval:
-			return String(localized: "Waiting for user approval.",
+		case .watingForActivationApproval:
+			return String(localized: "Install waiting for user approval.",
+						  comment: "User must approve or deny last action")
+		case .watingForDeactivationApproval:
+			return String(localized: "Uninstall waiting for user approval.",
 						  comment: "User must approve or deny last action")
 		case .waitingForReboot:
 			return String(localized: "Reboot your computer to finalize changes.",
@@ -196,7 +198,7 @@ extension DriverController: OSSystemExtensionRequestDelegate {
 	func requestNeedsUserApproval(_ request: OSSystemExtensionRequest)
 	{
 		os_log("\(type(of: self)).\(#function)")
-		self.state = DriverState.transition(state, .activationNeedsUserApproval)
+		self.state = DriverState.transition(state, .actionNeedsApproval)
 	}
 
 	func request(_ request: OSSystemExtensionRequest,
@@ -206,13 +208,13 @@ extension DriverController: OSSystemExtensionRequestDelegate {
 
 		switch result {
 		case .completed:
-			self.state = DriverState.transition(state, .activationFinished)
+			self.state = DriverState.transition(state, .actionSucceded)
 			break
 		case .willCompleteAfterReboot:
-			self.state = DriverState.transition(state, .activationNeedsReboot)
+			self.state = DriverState.transition(state, .actionNeedsReboot)
 			break
 		@unknown default:
-			fatalError()
+			self.state = .error
 		}
 	}
 
@@ -220,7 +222,7 @@ extension DriverController: OSSystemExtensionRequestDelegate {
 				 didFailWithError error: any Error)
 	{
 		os_log("\(type(of: self)).\(#function) error=\(error)")
-		self.state = DriverState.transition(state, .activationFailed)
+		self.state = DriverState.transition(state, .actionFailed)
 	}
 
 	func request(_ request: OSSystemExtensionRequest,
@@ -272,7 +274,7 @@ extension DriverController {
 
 		let request = OSSystemExtensionRequest.activationRequest(
 			forExtensionWithIdentifier: dextIdentifier,
-			queue: .main
+			queue: .main // .global(qos: .userInteractive) ??
 		)
 		request.delegate = self
 		OSSystemExtensionManager.shared.submitRequest(request)
@@ -289,7 +291,7 @@ extension DriverController {
 
 		let request = OSSystemExtensionRequest.deactivationRequest(
 			forExtensionWithIdentifier: dextIdentifier,
-			queue: .main
+			queue: .main // .global(qos: .userInteractive) ??
 		)
 		request.delegate = self
 		OSSystemExtensionManager.shared.submitRequest(request)

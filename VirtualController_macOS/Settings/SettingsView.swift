@@ -11,23 +11,22 @@ import SwiftUI
 func systemImageForState(_ state: DriverState.State) -> (String,  Color) {
 	switch state {
 	case .unknown:
-		return ("questionmark.square.dashed", Color.gray)
+		return ("questionmark", Color.gray)
 	case .checking:
 		return ("magnifyingglass", Color.primary)
 	case .missing:
-		return ("square.dashed", Color.orange)
-	case .activating, .deactivating, .waitingForUserApproval:
+		return ("exclamationmark.magnifyingglass", Color.orange)
+	case .activating, .deactivating, .watingForActivationApproval,
+			.watingForDeactivationApproval:
 		return ("clock", Color.primary)
-	case .failedToActivate:
-		return ("exclamationmark.circle", Color.red)
+	case .failedToActivate, .failedToDeactivate:
+		return ("exclamationmark.triangle", Color.red)
 	case .installed:
 		return ("checkmark.circle", Color.green)
-	case .failedToDeactivate:
-		return ("exclamationmark.circle", Color.red)
 	case .uninstalled:
 		return ("trash.circle", Color.green)
 	case .waitingForReboot:
-		return ("arrow.trianglehead.counterclockwise", Color.orange)
+		return ("arrow.counterclockwise", Color.orange)
 	case .error:
 		return ("nosign.app", Color.red)
 	}
@@ -45,7 +44,7 @@ struct SettingsView: View {
 
 	var body: some View {
 		VStack(alignment: .center) {
-			Text("Virtual Controller Driver").font(.title)
+			Text("Virtual Controller Driver").font(.largeTitle)
 			Image(systemName: "gamecontroller").imageScale(.large)
 				.foregroundColor(.accentColor)
 				//.rotationEffect(Angle(degrees: 0), anchor: .center)
@@ -54,10 +53,11 @@ struct SettingsView: View {
 			let (sysImage, color) = systemImageForState(self.driverController.state)
 			Label {
 				Text(self.driverController.stateDescription)
-					.font(.title2)
+					.font(.title)
 					.multilineTextAlignment(.center)
 			} icon: {
 				Image(systemName: sysImage)
+					.imageScale(.large)
 					.foregroundColor(color)
 			}
 			.padding(.bottom)
