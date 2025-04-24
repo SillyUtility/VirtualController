@@ -22,10 +22,13 @@
 @end
 
 @implementation GameScene {
+	SKTextureAtlas *_textureAtlas;
 	SKShapeNode *_spinnyNode;
 	SKLabelNode *_driverNotInstalledLabel;
+	SKLabelNode *_driverIntallHintLabel;
 	SKLabelNode *_driverInstalledLabel;
 	SLYButton *_settingsButton;
+	SKSpriteNode *_driverIPCState;
 }
 
 + (GameScene *)newGameScene {
@@ -45,26 +48,19 @@
 - (void)showDriverNotInstalledLabel
 {
 	 Log("%{public}s", __func__);
-	if (_driverNotInstalledLabel) {
+	if (_driverNotInstalledLabel)
 		_driverNotInstalledLabel.hidden = NO;
-		return;
-	}
-	_driverNotInstalledLabel = SKLabelNode.new;
-	_driverNotInstalledLabel.fontName = @"Retro-Pixel-Arcade-Regular";
-	_driverNotInstalledLabel.fontSize = 32;
-	_driverNotInstalledLabel.fontColor = NSColor.whiteColor;
-	_driverNotInstalledLabel.text = @"Driver not installed";
-	Log("_driverNotInstalledLabel.frame=%{public}@", NSStringFromRect(_driverNotInstalledLabel.frame));
-	[self addChild:_driverNotInstalledLabel];
+	if (_driverIntallHintLabel)
+		_driverIntallHintLabel.hidden = NO;
 }
 
 - (void)removeDiverNotInstalledLabel
 {
 	 Log("%{public}s", __func__);
-	if (_driverNotInstalledLabel) {
-		[_driverNotInstalledLabel removeFromParent];
-		_driverNotInstalledLabel = nil;
-	}
+	if (_driverNotInstalledLabel)
+		_driverNotInstalledLabel.hidden = YES;
+	if (_driverIntallHintLabel)
+		_driverIntallHintLabel.hidden = YES;
 }
 
 - (void)showDriverInstalledLabel
@@ -73,53 +69,95 @@
 	if (_driverInstalledLabel) {
 		[self repositionDriverInstalledLabel];
 		_driverInstalledLabel.hidden = NO;
-		return;
 	}
-	_driverInstalledLabel = SKLabelNode.new;
-	_driverInstalledLabel.fontName = @"Retro-Pixel-Arcade-Regular";
-	_driverInstalledLabel.fontSize = 22;
-	_driverInstalledLabel.fontColor = NSColor.whiteColor;
-	_driverInstalledLabel.text = @"Driver installed";
-	[self repositionDriverInstalledLabel];
-	Log("_driverInstalledLabel.frame=%{public}@", NSStringFromRect(_driverInstalledLabel.frame));
-	[self addChild:_driverInstalledLabel];
 }
 
 - (void)removeDiverInstalledLabel
 {
-	 Log("%{public}s", __func__);
-	if (_driverInstalledLabel) {
-		[_driverInstalledLabel removeFromParent];
-		_driverInstalledLabel = nil;
-	}
+	Log("%{public}s", __func__);
+	if (_driverInstalledLabel)
+		_driverInstalledLabel.hidden = YES;
 }
 
 - (void)repositionDriverInstalledLabel
 {
-	CGSize ssize = self.size;
-	CGSize lsize = _driverInstalledLabel.frame.size;
-	CGFloat x = -(ssize.width / 2) + (lsize.width / 2) + 42;
-	CGFloat y = (ssize.height / 2) - (lsize.height / 2) - 42;
-
+	CGSize ssize = _driverInstalledLabel.scene.size;
+	CGFloat x = -(ssize.width / 2) + 10;
+	CGFloat y = (ssize.height / 2) - 10;
 	_driverInstalledLabel.position = CGPointMake(x, y);
+}
+
+- (void)driverDisconnected
+{
+	Log("%{public}s", __func__);
+	if (!_driverIPCState)
+		return;
+	_driverIPCState.texture = [_textureAtlas textureNamed:@"DriverDisconnected"];
+	[self repositionDriverIPCState];
+}
+
+- (void)driverConnected
+{
+	Log("%{public}s", __func__);
+	if (!_driverIPCState)
+		return;
+	_driverIPCState.texture = [_textureAtlas textureNamed:@"DriverConnected"];
+	[self repositionDriverIPCState];
+}
+
+- (void)repositionDriverIPCState
+{
+	CGSize ssize = _driverIPCState.scene.size;
+	CGFloat x = (ssize.width / 2) - 10;
+	CGFloat y = (ssize.height / 2) - 10;
+	_driverIPCState.position = CGPointMake(x, y);
 }
 
 - (void)didChangeSize:(CGSize)oldSize
 {
 	// Log("%{public}s", __func__);
 	[self repositionDriverInstalledLabel];
+	[self repositionDriverIPCState];
 }
 
 - (void)setUpScene {
-	if (!NSApp.appDelegate.driverInstallationController.installed)
-		[self showDriverNotInstalledLabel];
-	else
-		[self showDriverInstalledLabel];
+	_textureAtlas = [SKTextureAtlas atlasNamed:@"Sprites"];
 
-	_settingsButton = (SLYButton *)[self childNodeWithName:@"//Settings"];
+	_driverInstalledLabel = (SKLabelNode *)[self childNodeWithName:@"//DriverInstalledLabel"];
+	_driverInstalledLabel.fontName = @"Retro-Pixel-Arcade-Regular";
+	_driverInstalledLabel.fontSize = 22;
+	_driverInstalledLabel.fontColor = NSColor.whiteColor;
+	_driverInstalledLabel.text = @"Driver installed";
+	[self repositionDriverInstalledLabel];
+
+	_driverNotInstalledLabel = (SKLabelNode *)[self childNodeWithName:@"//DriverNotInstalledLabel"];
+	_driverNotInstalledLabel.fontName = @"Retro-Pixel-Arcade-Regular";
+	_driverNotInstalledLabel.fontSize = 32;
+	_driverNotInstalledLabel.fontColor = NSColor.whiteColor;
+	_driverNotInstalledLabel.text = @"Driver not installed";
+
+	_driverIntallHintLabel = (SKLabelNode *)[self childNodeWithName:@"//DriverInstallHintLabel"];
+	_driverIntallHintLabel.fontName = @"Retro-Pixel-Arcade-Regular";
+	_driverIntallHintLabel.fontSize = 18;
+	_driverIntallHintLabel.fontColor = NSColor.whiteColor;
+	_driverIntallHintLabel.text = @"Open Settings to install";
+
+	_settingsButton = (SLYButton *)[self childNodeWithName:@"//SettingsButton"];
 	_settingsButton.target = self;
 	_settingsButton.action = @selector(openSettings:);
 	Log("%{public}s _settingsButton=%{public}@", __func__, _settingsButton);
+
+	_driverIPCState = (SKSpriteNode *)[self childNodeWithName:@"//DriverIPCState"];
+	Log("%{public}s _driverIPCState=%{public}@", __func__, _driverIPCState);
+	[self driverDisconnected];
+
+	if (NSApp.appDelegate.driverInstallationController.installed) {
+		[self showDriverInstalledLabel];
+		[self removeDiverNotInstalledLabel];
+	} else {
+		[self removeDiverInstalledLabel];
+		[self showDriverNotInstalledLabel];
+	}
 
     // Create shape node to use during mouse interaction
     CGFloat w = (self.size.width + self.size.height) * 0.05;
@@ -209,6 +247,10 @@
 - (void)driverIPCStateChange
 {
 	Log("%{public}s", __func__);
+	if (NSApp.appDelegate.driverIPC.connected)
+		[self driverConnected];
+	else
+		[self driverDisconnected];
 }
 
 - (IBAction)openSettings:(id)sender
