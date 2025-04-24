@@ -14,6 +14,8 @@
 #import "NSApplication+Additions.h"
 #import "AppDelegate.h"
 
+#import "SLYButton.h"
+
 #define Log(fmt, ...) os_log(OS_LOG_DEFAULT, "[VirtualController(GameScene)] " fmt "\n", ##__VA_ARGS__)
 
 @interface GameScene ()
@@ -23,6 +25,7 @@
 	SKShapeNode *_spinnyNode;
 	SKLabelNode *_driverNotInstalledLabel;
 	SKLabelNode *_driverInstalledLabel;
+	SLYButton *_settingsButton;
 }
 
 + (GameScene *)newGameScene {
@@ -113,6 +116,11 @@
 	else
 		[self showDriverInstalledLabel];
 
+	_settingsButton = (SLYButton *)[self childNodeWithName:@"//Settings"];
+	_settingsButton.target = self;
+	_settingsButton.action = @selector(openSettings:);
+	Log("%{public}s _settingsButton=%{public}@", __func__, _settingsButton);
+
     // Create shape node to use during mouse interaction
     CGFloat w = (self.size.width + self.size.height) * 0.05;
     _spinnyNode = [SKShapeNode shapeNodeWithRectOfSize:CGSizeMake(w, w) cornerRadius:w * 0.3];
@@ -201,6 +209,12 @@
 - (void)driverIPCStateChange
 {
 	Log("%{public}s", __func__);
+}
+
+- (IBAction)openSettings:(id)sender
+{
+	Log("%{public}s", __func__);
+	[NSApp.appDelegate performSelector:_cmd withObject:sender];
 }
 
 @end
