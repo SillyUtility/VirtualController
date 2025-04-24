@@ -1,0 +1,33 @@
+[[applicationCollection]]
+usage = ['Generic Desktop', 'Gamepad']
+
+    [[applicationCollection.inputReport]]
+
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Generic Desktop', 'D-Pad Up']
+        logicalValueRange = [0, 1]
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Generic Desktop', 'D-Pad Down']
+        logicalValueRange = [0, 1]
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Generic Desktop', 'D-Pad Left']
+        logicalValueRange = [0, 1]
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Generic Desktop', 'D-Pad Right']
+        logicalValueRange = [0, 1]
+
+	[[applicationCollection.inputReport.variableItem]]
+        usage = ['Generic Desktop', 'Select']
+        logicalValueRange = [0, 1]
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Generic Desktop', 'Start']
+        logicalValueRange = [0, 1]
+
+	[[applicationCollection.inputReport.variableItem]]
+        usageRange = ['Button', 'Button 1', 'Button 2']
+        logicalValueRange = [0, 1]
