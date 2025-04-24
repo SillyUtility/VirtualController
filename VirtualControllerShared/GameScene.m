@@ -5,15 +5,27 @@
 //  Created by Eddie Hillenbrand on 4/14/25.
 //
 
+#import <os/log.h>
+
 #import "GameScene.h"
+#import "DriverIPCController.h"
+
+#import "VirtualController-Swift.h"
+#import "NSApplication+Additions.h"
+#import "AppDelegate.h"
+
+#define Log(fmt, ...) os_log(OS_LOG_DEFAULT, "[VirtualController(GameScene)] " fmt "\n", ##__VA_ARGS__)
+
+@interface GameScene ()
+@end
 
 @implementation GameScene {
-    SKShapeNode *_spinnyNode;
-    SKLabelNode *_label;
+	SKShapeNode *_spinnyNode;
+	SKLabelNode *_driverNotInstalledLabel;
+	SKLabelNode *_driverInstalledLabel;
 }
 
 + (GameScene *)newGameScene {
-    // Load 'GameScene.sks' as an SKScene.
     GameScene *scene = (GameScene *)[SKScene nodeWithFileNamed:@"GameScene"];
     if (!scene) {
         NSLog(@"Failed to load GameScene.sks");
@@ -21,16 +33,85 @@
     }
 
     // Set the scale mode to scale to fit the window
-    scene.scaleMode = SKSceneScaleModeAspectFill;
+    //scene.scaleMode = SKSceneScaleModeAspectFill;
+	scene.scaleMode = SKSceneScaleModeResizeFill;
 
     return scene;
 }
 
+- (void)showDriverNotInstalledLabel
+{
+	 Log("%{public}s", __func__);
+	if (_driverNotInstalledLabel) {
+		_driverNotInstalledLabel.hidden = NO;
+		return;
+	}
+	_driverNotInstalledLabel = SKLabelNode.new;
+	_driverNotInstalledLabel.fontName = @"Retro-Pixel-Arcade-Regular";
+	_driverNotInstalledLabel.fontSize = 32;
+	_driverNotInstalledLabel.fontColor = NSColor.whiteColor;
+	_driverNotInstalledLabel.text = @"Driver not installed";
+	Log("_driverNotInstalledLabel.frame=%{public}@", NSStringFromRect(_driverNotInstalledLabel.frame));
+	[self addChild:_driverNotInstalledLabel];
+}
+
+- (void)removeDiverNotInstalledLabel
+{
+	 Log("%{public}s", __func__);
+	if (_driverNotInstalledLabel) {
+		[_driverNotInstalledLabel removeFromParent];
+		_driverNotInstalledLabel = nil;
+	}
+}
+
+- (void)showDriverInstalledLabel
+{
+	 Log("%{public}s", __func__);
+	if (_driverInstalledLabel) {
+		[self repositionDriverInstalledLabel];
+		_driverInstalledLabel.hidden = NO;
+		return;
+	}
+	_driverInstalledLabel = SKLabelNode.new;
+	_driverInstalledLabel.fontName = @"Retro-Pixel-Arcade-Regular";
+	_driverInstalledLabel.fontSize = 22;
+	_driverInstalledLabel.fontColor = NSColor.whiteColor;
+	_driverInstalledLabel.text = @"Driver installed";
+	[self repositionDriverInstalledLabel];
+	Log("_driverInstalledLabel.frame=%{public}@", NSStringFromRect(_driverInstalledLabel.frame));
+	[self addChild:_driverInstalledLabel];
+}
+
+- (void)removeDiverInstalledLabel
+{
+	 Log("%{public}s", __func__);
+	if (_driverInstalledLabel) {
+		[_driverInstalledLabel removeFromParent];
+		_driverInstalledLabel = nil;
+	}
+}
+
+- (void)repositionDriverInstalledLabel
+{
+	CGSize ssize = self.size;
+	CGSize lsize = _driverInstalledLabel.frame.size;
+	CGFloat x = -(ssize.width / 2) + (lsize.width / 2) + 42;
+	CGFloat y = (ssize.height / 2) - (lsize.height / 2) - 42;
+
+	_driverInstalledLabel.position = CGPointMake(x, y);
+}
+
+- (void)didChangeSize:(CGSize)oldSize
+{
+	// Log("%{public}s", __func__);
+	[self repositionDriverInstalledLabel];
+}
+
 - (void)setUpScene {
-    // Get label node from scene and store it for use later
-    _label = (SKLabelNode *)[self childNodeWithName:@"//helloLabel"];
-    _label.alpha = 0.0;
-    [_label runAction:[SKAction fadeInWithDuration:2.0]];
+	if (!NSApp.appDelegate.driverInstallationController.installed)
+		[self showDriverNotInstalledLabel];
+	else
+		[self showDriverInstalledLabel];
 
     // Create shape node to use during mouse interaction
     CGFloat w = (self.size.width + self.size.height) * 0.05;
@@ -46,7 +127,8 @@
 }
 
 - (void)didMoveToView:(SKView *)view {
-    [self setUpScene];
+	//Log("%{public}s", __func__);
+	[self setUpScene];
 }
 
 - (void)makeSpinnyAtPoint:(CGPoint)pos color:(SKColor *)color {
@@ -91,8 +173,6 @@
 // Mouse-based event handling
 
 - (void)mouseDown:(NSEvent *)event {
-    [_label runAction:[SKAction actionNamed:@"Pulse"] withKey:@"fadeInOut"];
-
     [self makeSpinnyAtPoint:[event locationInNode:self] color:[SKColor greenColor]];
 }
 
@@ -105,5 +185,22 @@
 }
 
 #endif
+
+- (void)driverInstallationStateChange
+{
+	Log("%{public}s", __func__);
+	if (NSApp.appDelegate.driverInstallationController.installed) {
+		[self showDriverInstalledLabel];
+		[self removeDiverNotInstalledLabel];
+	} else {
+		[self removeDiverInstalledLabel];
+		[self showDriverNotInstalledLabel];
+	}
+}
+
+- (void)driverIPCStateChange
+{
+	Log("%{public}s", __func__);
+}
 
 @end

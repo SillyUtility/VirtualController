@@ -32,7 +32,7 @@
 			<key>UserClientProperties</key>
 			<dict>
 				<key>IOClass</key>
-				<string>IOUserClient</string>
+				<string>IOUserUserClient</string>
 				<key>IOUserClass</key>
 				<string>VirtualControllerDriverUserClient</string>
 			</dict>

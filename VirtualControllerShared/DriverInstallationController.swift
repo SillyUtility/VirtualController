@@ -10,8 +10,8 @@ import Foundation
 import SystemExtensions
 import os.log
 
-class DriverState {
-	enum State {
+class DriverInstallationState {
+	enum State: String {
 		case unknown
 		case checking
 		case missing
@@ -31,7 +31,7 @@ class DriverState {
 		case error
 	}
 
-	enum Event {
+	enum Event: String {
 		// check events
 		case checkBegan
 		case checkDidNotFindDriver
@@ -125,8 +125,20 @@ class DriverState {
 	}
 }
 
-class DriverController: NSObject {
-	@Published private(set) var state: DriverState.State = .unknown
+class DriverInstallationController: NSObject {
+	@Published private var _state: DriverInstallationState.State = .unknown
+
+	private(set) var state: DriverInstallationState.State {
+		get { _state }
+		set(newState) {
+			_state = newState
+			if (_state == .installed) {
+				installed = true
+			} else {
+				installed = false
+			}
+		}
+	}
 
 	private var installedDextProperties: OSSystemExtensionProperties? = nil
 	private let dextIdentifier: String = Bundle.main.bundleIdentifier! + ".VirtualControllerDriver"
@@ -137,6 +149,8 @@ class DriverController: NSObject {
 		os_log("\(type(of: self)).\(#function) swiftPreviews=\(self.swiftPreviews), dextIdentifier=\(self.dextIdentifier)")
 		checkExtension()
 	}
+
+	@objc dynamic var installed: ObjCBool = false
 
 	public var stateDescription: String {
 		switch state {
@@ -183,9 +197,9 @@ class DriverController: NSObject {
 	}
 }
 
-extension DriverController: ObservableObject {}
+extension DriverInstallationController: ObservableObject {}
 
-extension DriverController: OSSystemExtensionRequestDelegate {
+extension DriverInstallationController: OSSystemExtensionRequestDelegate {
 	func request(_ request: OSSystemExtensionRequest,
 				 actionForReplacingExtension existing: OSSystemExtensionProperties,
 				 withExtension ext: OSSystemExtensionProperties) -> OSSystemExtensionRequest.ReplacementAction
@@ -198,7 +212,7 @@ extension DriverController: OSSystemExtensionRequestDelegate {
 	func requestNeedsUserApproval(_ request: OSSystemExtensionRequest)
 	{
 		os_log("\(type(of: self)).\(#function)")
-		self.state = DriverState.transition(state, .actionNeedsApproval)
+		self.state = DriverInstallationState.transition(state, .actionNeedsApproval)
 	}
 
 	func request(_ request: OSSystemExtensionRequest,
@@ -208,10 +222,10 @@ extension DriverController: OSSystemExtensionRequestDelegate {
 
 		switch result {
 		case .completed:
-			self.state = DriverState.transition(state, .actionSucceded)
+			self.state = DriverInstallationState.transition(state, .actionSucceded)
 			break
 		case .willCompleteAfterReboot:
-			self.state = DriverState.transition(state, .actionNeedsReboot)
+			self.state = DriverInstallationState.transition(state, .actionNeedsReboot)
 			break
 		@unknown default:
 			self.state = .error
@@ -222,7 +236,7 @@ extension DriverController: OSSystemExtensionRequestDelegate {
 				 didFailWithError error: any Error)
 	{
 		os_log("\(type(of: self)).\(#function) error=\(error)")
-		self.state = DriverState.transition(state, .actionFailed)
+		self.state = DriverInstallationState.transition(state, .actionFailed)
 	}
 
 	func request(_ request: OSSystemExtensionRequest,
@@ -239,16 +253,16 @@ extension DriverController: OSSystemExtensionRequestDelegate {
 		// isUninstalling
 
 		if (properties.isEmpty) {
-			self.state = DriverState.transition(state, .checkDidNotFindDriver)
+			self.state = DriverInstallationState.transition(state, .checkDidNotFindDriver)
 			return
 		}
 
-		self.state = DriverState.transition(state, .checkFoundDriver)
+		self.state = DriverInstallationState.transition(state, .checkFoundDriver)
 	}
 }
 
-extension DriverController {
-	func checkExtension() {
+extension DriverInstallationController {
+	@objc func checkExtension() {
 		os_log("\(type(of: self)).\(#function)")
 
 		if (swiftPreviews) {
@@ -256,13 +270,13 @@ extension DriverController {
 		}
 
 		let request = OSSystemExtensionRequest.propertiesRequest(
-			forExtensionWithIdentifier: dextIdentifier,
-			queue: .global(qos: .userInteractive)
+			forExtensionWithIdentifier: self.dextIdentifier,
+			queue: .main //.global(qos: .userInteractive)
 		)
 		request.delegate = self
 		OSSystemExtensionManager.shared.submitRequest(request)
 
-		self.state = DriverState.transition(state, .checkBegan)
+		self.state = DriverInstallationState.transition(self.state, .checkBegan)
 	}
 
 	func activateExtension() {
@@ -279,7 +293,7 @@ extension DriverController {
 		request.delegate = self
 		OSSystemExtensionManager.shared.submitRequest(request)
 
-		self.state = DriverState.transition(state, .activationBegan)
+		self.state = DriverInstallationState.transition(self.state, .activationBegan)
 	}
 
 	func deactivateExtension() {
@@ -290,12 +304,12 @@ extension DriverController {
 		}
 
 		let request = OSSystemExtensionRequest.deactivationRequest(
-			forExtensionWithIdentifier: dextIdentifier,
-			queue: .main // .global(qos: .userInteractive) ??
+			forExtensionWithIdentifier: self.dextIdentifier,
+			queue: .main //.global(qos: .userInteractive)
 		)
 		request.delegate = self
 		OSSystemExtensionManager.shared.submitRequest(request)
 
-		self.state = DriverState.transition(state, .deactivationBegan)
+		self.state = DriverInstallationState.transition(self.state, .deactivationBegan)
 	}
 }

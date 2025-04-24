@@ -26,6 +26,15 @@ public:
 
 	virtual kern_return_t
 	Stop(IOService* provider) override;
+
+
+	/* IOUserClient */
+
+	virtual kern_return_t
+	ExternalMethod(uint64_t selector,
+		IOUserClientMethodArguments *arguments,
+		const IOUserClientMethodDispatch *dispatch,
+		OSObject *target, void* reference) override;
 };
 
 #endif /* VirtualControllerDriverUserClient_h */

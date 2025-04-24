@@ -61,8 +61,13 @@
 			membershipExceptions = (
 				Actions.sks,
 				Assets.xcassets,
+				DriverInstallationController.swift,
+				DriverIPC.c,
+				DriverIPCController.m,
 				GameScene.m,
 				GameScene.sks,
+				"retro-pixel-arcade.ttf",
+				SLYButton.m,
 			);
 			target = 2C864D2B2DAD5D6E00BA70BE /* VirtualController_macOS */;
 		};
@@ -454,6 +459,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "VirtualController-macOS-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -481,6 +487,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "VirtualController-macOS-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

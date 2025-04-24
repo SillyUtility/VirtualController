@@ -11,4 +11,7 @@
 
 + (GameScene *)newGameScene;
 
+- (void)driverInstallationStateChange;
+- (void)driverIPCStateChange;
+
 @end

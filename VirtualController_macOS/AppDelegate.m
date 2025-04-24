@@ -5,10 +5,13 @@
 //  Created by Eddie Hillenbrand on 4/14/25.
 //
 
+#import <os/log.h>
+
 #import "AppDelegate.h"
 #import "SLYSettingsWindowController.h"
 
-#import <os/log.h>
+#import "VirtualController-Swift.h"
+#import "DriverIPCController.h"
 
 @interface AppDelegate ()
 @property (readonly) NSWindowController *mainWindowController;
@@ -23,6 +26,9 @@
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+	_driverIPC = DriverIPCController.new;
+	_driverInstallationController = DriverInstallationController.new;
+
 	// Don't show the main window when previewing a SwiftUI view
 	NSString *swiftPreviews = NSProcessInfo.processInfo.environment[@"XCODE_RUNNING_FOR_PREVIEWS"];
 	os_log(OS_LOG_DEFAULT, "swiftPreviews=%@", swiftPreviews);

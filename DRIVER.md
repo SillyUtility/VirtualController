@@ -33,6 +33,10 @@ Filter out everything but messages from the driver:
 
 	log stream --style compact --predicate 'process == "kernel" and eventMessage contains "[VirtualController"' --info --debug
 
+Stream messages from the macOS app and the driver (but some unrelated subsystems too):
+
+	log stream --style compact --predicate 'eventMessage contains "[VirtualController"' --info --debug
+
 # Where is the `IMPL` macro?
 
 From `DriverKit/OSObject.igg`:

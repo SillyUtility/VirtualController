@@ -85,3 +85,17 @@ VirtualControllerDriverUserClient::Stop_Impl(IOService *provider)
 
 	return ret;
 }
+
+kern_return_t
+VirtualControllerDriverUserClient::ExternalMethod(uint64_t selector,
+	IOUserClientMethodArguments *arguments,
+	const IOUserClientMethodDispatch *dispatch,
+	OSObject *target, void *reference)
+{
+	kern_return_t ret = kIOReturnSuccess;
+
+	Log("%{public}s", __func__);
+
+Exit:
+	return ret;
+}

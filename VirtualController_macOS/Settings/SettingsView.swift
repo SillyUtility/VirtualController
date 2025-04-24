@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-func systemImageForState(_ state: DriverState.State) -> (String,  Color) {
+func systemImageForState(_ state: DriverInstallationState.State) -> (String,  Color) {
 	switch state {
 	case .unknown:
 		return ("questionmark", Color.gray)
@@ -32,7 +32,7 @@ func systemImageForState(_ state: DriverState.State) -> (String,  Color) {
 	}
 }
 
-func canInstall(_ state: DriverState.State) -> Bool {
+func canInstall(_ state: DriverInstallationState.State) -> Bool {
 	switch state {
 	case .missing, .uninstalled: return true
 	default: return false
@@ -40,7 +40,7 @@ func canInstall(_ state: DriverState.State) -> Bool {
 }
 
 struct SettingsView: View {
-	@ObservedObject var driverController = DriverController()
+	@ObservedObject var driverController = NSApp.appDelegate.driverInstallationController
 
 	var body: some View {
 		VStack(alignment: .center) {

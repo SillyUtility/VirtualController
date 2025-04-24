@@ -108,7 +108,7 @@ VirtualControllerDriver::NewUserClient_Impl(uint32_t type, IOUserClient **userCl
 
 	ret = Create(this, "UserClientProperties", &client);
 	if (ret != kIOReturnSuccess) {
-		Log("Failed to create UserClientProperties with error: 0x%08x", ret);
+		Log("Failed to create user client from UserClientProperties with error: 0x%08x", ret);
 		goto Exit;
 	}
 
