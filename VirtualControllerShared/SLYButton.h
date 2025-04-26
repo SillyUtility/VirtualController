@@ -23,24 +23,29 @@ FOUNDATION_EXPORT NSString * const SLYButtonUserDataDownActionNameKey;
 @property (weak, nullable) id target;
 @property (nullable) SEL action;
 
-@property NSString *title;
-@property NSString *textureAtlasName;
-@property NSString *upTextureName;
-@property NSString *downTextureName;
-@property NSString *soundFileName;
-@property NSString *upActionName;
-@property NSString *downActionName;
+@property (nullable) NSString *title;
+@property (nullable) NSString *textureAtlasName;
+@property (nullable) NSString *upTextureName;
+@property (nullable) NSString *downTextureName;
+@property (nullable) NSString *soundFileName;
+@property (nullable) NSString *upActionName;
+@property (nullable) NSString *downActionName;
 
-@property SKTextureAtlas *textureAtlas;
-@property SKTexture *upTexture;
-@property SKTexture *downTexture;
-@property SKAction *upAction;
-@property SKAction *downAction;
+@property (nullable) SKTextureAtlas *textureAtlas;
+@property (nullable) SKTexture *upTexture;
+@property (nullable) SKTexture *downTexture;
+@property (nullable) SKAction *upAction;
+@property (nullable) SKAction *downAction;
 
 @property (class) NSString *defaultTextureAtlasName;
 @property (class) NSString *defaultUpActionName;
 @property (class) NSString *defaultDownActionName;
 
+@end
+
+@interface SKNode (SLYButton)
+- (SLYButton *)buttonWithName:(NSString *)name;
+- (SLYButton *)buttonWithName:(NSString *)name forceConfigure:(BOOL)forceConfig;
 @end
 
 NS_ASSUME_NONNULL_END

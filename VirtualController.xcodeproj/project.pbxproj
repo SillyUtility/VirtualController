@@ -59,6 +59,7 @@
 		2C864D3F2DAD5D6E00BA70BE /* Exceptions for "VirtualControllerShared" folder in "VirtualController_macOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				9ES.sks,
 				Actions.sks,
 				Assets.xcassets,
 				DriverInstallationController.swift,
@@ -68,6 +69,8 @@
 				GameScene.sks,
 				"retro-pixel-arcade.ttf",
 				SLYButton.m,
+				SLYController_9ES.m,
+				SLYController.m,
 			);
 			target = 2C864D2B2DAD5D6E00BA70BE /* VirtualController_macOS */;
 		};

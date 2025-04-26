@@ -6,7 +6,11 @@
 //  Copyright © 2025 Silly Utility. All rights reserved.
 //
 
+#import <os/log.h>
+
 #import "SLYButton.h"
+
+#define Log(fmt, ...) os_log(OS_LOG_DEFAULT, "[VirtualController(SLYButton)] " fmt "\n", ##__VA_ARGS__)
 
 NSString * const SLYButtonUserDataTitleKey = @"Title";
 NSString * const SLYButtonUserDataTextureAtlasNameKey = @"TextureAtlasName";
@@ -28,6 +32,11 @@ NSString *_defaultDownActionName = SLYDefaultDownActionName;
 @interface SLYButton ()
 @property SKSpriteNode *sprite;
 @property SKLabelNode *label;
+
+- (void)reset;
+- (void)configureFromUserData;
+- (void)down:(CGPoint)location;
+- (void)up:(CGPoint)location;
 @end
 
 @implementation SLYButton
@@ -38,6 +47,31 @@ NSString *_defaultDownActionName = SLYDefaultDownActionName;
 		return self;
 
 	self.texture = nil;
+	[self configureFromUserData];
+	return self;
+}
+
+- (void)reset
+{
+	self.title = nil;
+	self.textureAtlasName = nil;
+	self.upTextureName = nil;
+	self.downTextureName = nil;
+	self.soundFileName = nil;
+	self.upActionName = nil;
+	self.downActionName = nil;
+
+	self.textureAtlas = nil;
+	self.upTexture = nil;
+	self.downTexture = nil;
+	self.upAction = nil;
+	self.downAction = nil;
+}
+
+- (void)configureFromUserData
+{
+	Log("name=%{public}@ self.scene=%{public}@", self.name, self.scene);
+	Log("name=%{public}@ self.parent=%{public}@", self.name, self.parent);
 
 	if (self.userData[SLYButtonUserDataTitleKey])
 		self.title = self.userData[SLYButtonUserDataTitleKey];
@@ -46,7 +80,15 @@ NSString *_defaultDownActionName = SLYDefaultDownActionName;
 		if (self.userData[SLYButtonUserDataTextureAtlasNameKey]) {
 			self.textureAtlasName = self.userData[SLYButtonUserDataTextureAtlasNameKey];
 		} else {
-			self.textureAtlasName = SLYButton.defaultTextureAtlasName;
+			SKNode *node = self;
+			while ((node = node.parent)) {
+				if (node.userData[SLYButtonUserDataTextureAtlasNameKey]) {
+					self.textureAtlasName = node.userData[SLYButtonUserDataTextureAtlasNameKey];
+					break;
+				}
+			}
+			if (!self.textureAtlasName)
+				self.textureAtlasName = SLYButton.defaultTextureAtlasName;
 		}
 		self.textureAtlas = [SKTextureAtlas atlasNamed:self.textureAtlasName];
 	} @finally {
@@ -59,31 +101,33 @@ NSString *_defaultDownActionName = SLYDefaultDownActionName;
 	if (self.userData[SLYButtonUserDataUpTextureNameKey])
 		self.upTextureName = self.userData[SLYButtonUserDataUpTextureNameKey];
 	if (!self.upTextureName)
-		self.upTextureName = [NSString stringWithFormat:@"%@Up", self.name];
+		self.upTextureName = [NSString stringWithFormat:@"%@_Up", self.name];
 	if ([self.textureAtlas.textureNames containsObject:self.upTextureName])
 		self.upTexture = [self.textureAtlas textureNamed:self.upTextureName];
 
 	if (self.userData[SLYButtonUserDataDownTextureNameKey])
 		self.downTextureName = self.userData[SLYButtonUserDataDownTextureNameKey];
 	if (!self.downTextureName)
-		self.downTextureName = [NSString stringWithFormat:@"%@Down", self.name];
+		self.downTextureName = [NSString stringWithFormat:@"%@_Down", self.name];
 	if ([self.textureAtlas.textureNames containsObject:self.downTextureName])
 		self.downTexture = [self.textureAtlas textureNamed:self.downTextureName];
 
 	if (self.userData[SLYButtonUserDataSoundFileNameKey])
 		self.soundFileName = self.userData[SLYButtonUserDataSoundFileNameKey];
 
-	if (self.userData[SLYButtonUserDataUpActionNameKey])
-		self.upActionName = self.userData[SLYButtonUserDataUpActionNameKey];
-	if (!self.upActionName)
-		self.upActionName = SLYButton.defaultUpActionName;
-	self.upAction = [SKAction actionNamed:self.upActionName];
+	if (!self.downTexture) {
+		if (self.userData[SLYButtonUserDataUpActionNameKey])
+			self.upActionName = self.userData[SLYButtonUserDataUpActionNameKey];
+		if (!self.upActionName)
+			self.upActionName = SLYButton.defaultUpActionName;
+		self.upAction = [SKAction actionNamed:self.upActionName];
 
-	if (self.upAction && self.soundFileName)
-		self.upAction = [SKAction group:@[
-			self.upAction,
-			[SKAction playSoundFileNamed:self.soundFileName waitForCompletion:NO]
-		]];
+		if (self.upAction && self.soundFileName)
+			self.upAction = [SKAction group:@[
+				self.upAction,
+				[SKAction playSoundFileNamed:self.soundFileName waitForCompletion:NO]
+			]];
+	}
 
 	/* down action not implemented */
 
@@ -103,8 +147,6 @@ NSString *_defaultDownActionName = SLYDefaultDownActionName;
 		self.label.zPosition = 1001;
 		[self.sprite addChild:self.label];
 	}
-
-	return self;
 }
 
 - (void)down:(CGPoint)location
@@ -213,3 +255,24 @@ NSString *_defaultDownActionName = SLYDefaultDownActionName;
 }
 
 @end
+
+@implementation SKNode (SLYButton)
+
+- (SLYButton *)buttonWithName:(NSString *)name
+{
+
+	return [self buttonWithName:name forceConfigure:NO];
+}
+
+- (SLYButton *)buttonWithName:(NSString *)name forceConfigure:(BOOL)forceConfig;
+{
+	SLYButton *button = (SLYButton *)[self childNodeWithName:name];
+	if (forceConfig) {
+		[button reset];
+		[button configureFromUserData];
+	}
+	return button;
+}
+
+@end
+

@@ -15,6 +15,8 @@
 #import "AppDelegate.h"
 
 #import "SLYButton.h"
+#import "SLYController.h"
+#import "SLYController_9ES.h"
 
 #define Log(fmt, ...) os_log(OS_LOG_DEFAULT, "[VirtualController(GameScene)] " fmt "\n", ##__VA_ARGS__)
 
@@ -29,6 +31,7 @@
 	SKLabelNode *_driverInstalledLabel;
 	SLYButton *_settingsButton;
 	SKSpriteNode *_driverIPCState;
+	SLYController_9ES *_nesController;
 }
 
 + (GameScene *)newGameScene {
@@ -52,6 +55,8 @@
 		_driverNotInstalledLabel.hidden = NO;
 	if (_driverIntallHintLabel)
 		_driverIntallHintLabel.hidden = NO;
+	if (_settingsButton)
+		_settingsButton.hidden = NO;
 }
 
 - (void)removeDiverNotInstalledLabel
@@ -61,6 +66,8 @@
 		_driverNotInstalledLabel.hidden = YES;
 	if (_driverIntallHintLabel)
 		_driverIntallHintLabel.hidden = YES;
+	if (_settingsButton)
+		_settingsButton.hidden = YES;
 }
 
 - (void)showDriverInstalledLabel
@@ -92,8 +99,12 @@
 	Log("%{public}s", __func__);
 	if (!_driverIPCState)
 		return;
+
 	_driverIPCState.texture = [_textureAtlas textureNamed:@"DriverDisconnected"];
 	[self repositionDriverIPCState];
+
+	if (_nesController)
+		_nesController.hidden = YES;
 }
 
 - (void)driverConnected
@@ -101,8 +112,15 @@
 	Log("%{public}s", __func__);
 	if (!_driverIPCState)
 		return;
+
 	_driverIPCState.texture = [_textureAtlas textureNamed:@"DriverConnected"];
 	[self repositionDriverIPCState];
+
+	// Accessing any of the controllers child nodes will fail unless the scene has rendered at least once
+	if (!_nesController)
+		[self performSelectorOnMainThread:@selector(add9ES_Controller) withObject:nil waitUntilDone:NO];
+
+	_nesController.hidden = NO;
 }
 
 - (void)repositionDriverIPCState
@@ -118,6 +136,13 @@
 	// Log("%{public}s", __func__);
 	[self repositionDriverInstalledLabel];
 	[self repositionDriverIPCState];
+}
+
+- (void)add9ES_Controller {
+	_nesController = [self controller_9ES];
+	Log("%{public}s _nesController=%{public}@", __func__, _nesController);
+	Log("%{public}s _nesController.scene=%{public}@", __func__, _nesController.scene);
+	Log("%{public}s _nesController.parent=%{public}@", __func__, _nesController.parent);
 }
 
 - (void)setUpScene {
