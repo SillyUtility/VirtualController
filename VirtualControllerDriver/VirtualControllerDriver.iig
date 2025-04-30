@@ -12,6 +12,8 @@
 #include <Availability.h>
 #include <DriverKit/IOService.iig>
 
+#include "VirtualControllerDevice.iig"
+
 class VirtualControllerDriver: public IOService
 {
 public:
@@ -39,6 +41,9 @@ public:
 	kern_return_t
 	AttachNewVirtualDevice() LOCALONLY;
 
+
+	VirtualControllerDevice *
+	GetDevice() LOCALONLY;
 };
 
 #endif /* VirtualControllerDriver_h */

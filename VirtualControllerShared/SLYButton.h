@@ -21,21 +21,24 @@ FOUNDATION_EXPORT NSString * const SLYButtonUserDataDownActionNameKey;
 @interface SLYButton : SKSpriteNode
 
 @property (weak, nullable) id target;
+
 @property (nullable) SEL action;
+@property (nullable) SEL upAction;
+@property (nullable) SEL downAction;
 
 @property (nullable) NSString *title;
 @property (nullable) NSString *textureAtlasName;
 @property (nullable) NSString *upTextureName;
 @property (nullable) NSString *downTextureName;
 @property (nullable) NSString *soundFileName;
-@property (nullable) NSString *upActionName;
-@property (nullable) NSString *downActionName;
+@property (nullable) NSString *skUpActionName;
+@property (nullable) NSString *skDownActionName;
 
 @property (nullable) SKTextureAtlas *textureAtlas;
 @property (nullable) SKTexture *upTexture;
 @property (nullable) SKTexture *downTexture;
-@property (nullable) SKAction *upAction;
-@property (nullable) SKAction *downAction;
+@property (nullable) SKAction *skUpAction;
+@property (nullable) SKAction *skDownAction;
 
 @property (class) NSString *defaultTextureAtlasName;
 @property (class) NSString *defaultUpActionName;

@@ -126,49 +126,49 @@ VirtualControllerDevice::newDeviceDescription(void)
 		goto Exit;
 	}
 
-	manufacturer = OSString::withCStringNoCopy(GPONE_Manufacturer);
+	manufacturer = OSString::withCStringNoCopy(NINE_ES_Manufacturer);
 	if (!manufacturer) {
 		Log("Failed to allocate manufacturer string");
 		goto Exit;
 	}
 
-	product = OSString::withCStringNoCopy(GPONE_Product);
+	product = OSString::withCStringNoCopy(NINE_ES_Product);
 	if (!product) {
 		Log("Failed to allocate product string");
 		goto Exit;
 	}
 
-	serial = OSString::withCStringNoCopy(GPONE_SerialNumber);
+	serial = OSString::withCStringNoCopy(NINE_ES_SerialNumber);
 	if (!serial) {
 		Log("Failed to allocate serial string");
 		goto Exit;
 	}
 
-	vendorID = OSNumber::withNumber(GPONE_VendorID, 32);
+	vendorID = OSNumber::withNumber(NINE_ES_VendorID, 32);
 	if (vendorID == nullptr)
 		goto Exit;
 
-	productID = OSNumber::withNumber(GPONE_ProductID, 32);
+	productID = OSNumber::withNumber(NINE_ES_ProductID, 32);
 	if (vendorID == nullptr)
 		goto Exit;
 
-	versionNumber = OSNumber::withNumber(GPONE_VersionNumber, 32);
+	versionNumber = OSNumber::withNumber(NINE_ES_VersionNumber, 32);
 	if (productID == nullptr)
 		goto Exit;
 
-	countryCode = OSNumber::withNumber((uint64_t)GPONE_CountryCode, 32);
+	countryCode = OSNumber::withNumber((uint64_t)NINE_ES_CountryCode, 32);
 	if (countryCode == nullptr)
 		goto Exit;
 
-	locationID = OSNumber::withNumber((uint64_t)GPONE_LocationID, 32);
+	locationID = OSNumber::withNumber((uint64_t)NINE_ES_LocationID, 32);
 	if (locationID == nullptr)
 		goto Exit;
 
-	usagePage = OSNumber::withNumber(GPONE_PrimaryUsagePage, 32);
+	usagePage = OSNumber::withNumber(NINE_ES_PrimaryUsagePage, 32);
 	if (usagePage == nullptr)
 		goto Exit;
 
-	usage = OSNumber::withNumber(GPONE_PrimaryUsage, 32);
+	usage = OSNumber::withNumber(NINE_ES_PrimaryUsage, 32);
 	if (usage == nullptr)
 		goto Exit;
 
@@ -206,8 +206,8 @@ VirtualControllerDevice::newReportDescriptor(void)
 
 	Log("%{public}s", __func__);
 
-	descriptor = OSData::withBytesNoCopy((void *)hidReportDescriptor,
-		ARRAY_SIZE(hidReportDescriptor));
+	descriptor = OSData::withBytesNoCopy((void *)NineES_HIDReportDescriptor,
+		ARRAY_SIZE(NineES_HIDReportDescriptor));
 	if (!descriptor) {
 		Log("Failed to allocate data");
 		descriptor = nullptr;

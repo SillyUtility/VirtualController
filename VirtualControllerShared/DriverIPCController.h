@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)connect;
 - (void)disconnect;
 
+- (void)sendInputReport:(void *)report size:(size_t)reportSize;
 @end
 
 NS_ASSUME_NONNULL_END

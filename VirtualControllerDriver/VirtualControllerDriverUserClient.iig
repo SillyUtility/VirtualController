@@ -35,6 +35,17 @@ public:
 		IOUserClientMethodArguments *arguments,
 		const IOUserClientMethodDispatch *dispatch,
 		OSObject *target, void* reference) override;
+
+
+	/* VirtualControllerDriverUserClient */
+
+	kern_return_t
+	DeviceInputReport(void *ref,
+		IOUserClientMethodArguments *args) LOCALONLY;
+
+	kern_return_t
+	DeviceError(void *ref,
+		IOUserClientMethodArguments *args) LOCALONLY;
 };
 
 #endif /* VirtualControllerDriverUserClient_h */

@@ -11,13 +11,7 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <IOKit/IOKitLib.h>
-
-static const UInt32 SLYDriverProtocolVersion_v1 = 1;
-static const UInt32 SLYDriverProtocolCurrentVersion = SLYDriverProtocolVersion_v1;
-
-typedef enum {
-	SLYDriverErrorMessageID,
-} SLYDriverMessageID;
+#include "DriverIPCMessages.h"
 
 typedef void (*SLYDriverCB)(void);
 
@@ -28,6 +22,7 @@ typedef struct {
     CFRunLoopSourceRef source;
     io_iterator_t addIter;
     io_iterator_t remIter;
+    io_connect_t connection;
 	SLYDriverCB connectCB;
 	SLYDriverCB disconnectCB;
 } SLYDriverConnection;
@@ -38,5 +33,11 @@ SLYDriverConnect(SLYDriverConnection **con,
 
 void
 SLYDriverDisconnect(SLYDriverConnection *con);
+
+void
+SLYSendInputReport(SLYDriverConnection *con, void *report, size_t reportSize);
+
+void
+SLYSendError(SLYDriverConnection *con);
 
 #endif /* SLYVirtualControllerIPC_h */

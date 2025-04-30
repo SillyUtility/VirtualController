@@ -58,14 +58,14 @@ NSString *_defaultDownActionName = SLYDefaultDownActionName;
 	self.upTextureName = nil;
 	self.downTextureName = nil;
 	self.soundFileName = nil;
-	self.upActionName = nil;
-	self.downActionName = nil;
+	self.skUpActionName = nil;
+	self.skDownActionName = nil;
 
 	self.textureAtlas = nil;
 	self.upTexture = nil;
 	self.downTexture = nil;
-	self.upAction = nil;
-	self.downAction = nil;
+	self.skUpAction = nil;
+	self.skDownAction = nil;
 }
 
 - (void)configureFromUserData
@@ -117,14 +117,14 @@ NSString *_defaultDownActionName = SLYDefaultDownActionName;
 
 	if (!self.downTexture) {
 		if (self.userData[SLYButtonUserDataUpActionNameKey])
-			self.upActionName = self.userData[SLYButtonUserDataUpActionNameKey];
-		if (!self.upActionName)
-			self.upActionName = SLYButton.defaultUpActionName;
-		self.upAction = [SKAction actionNamed:self.upActionName];
+			self.skUpActionName = self.userData[SLYButtonUserDataUpActionNameKey];
+		if (!self.skUpActionName)
+			self.skUpActionName = SLYButton.defaultUpActionName;
+		self.skUpAction = [SKAction actionNamed:self.skUpActionName];
 
-		if (self.upAction && self.soundFileName)
-			self.upAction = [SKAction group:@[
-				self.upAction,
+		if (self.skUpAction && self.soundFileName)
+			self.skUpAction = [SKAction group:@[
+				self.skUpAction,
 				[SKAction playSoundFileNamed:self.soundFileName waitForCompletion:NO]
 			]];
 	}
@@ -153,23 +153,29 @@ NSString *_defaultDownActionName = SLYDefaultDownActionName;
 {
 	if (self.downTexture)
 		self.sprite.texture = self.downTexture;
+	if ([self.target respondsToSelector:self.downAction])
+		[self.target performSelector:self.downAction withObject:self];
 }
 
 - (void)up:(CGPoint)location
 {
+	SEL action = self.upAction;
+	if (!action)
+		action = self.action;
+
 	if ([self containsPoint:location])
-		if (self.upAction) {
-			[self runAction:self.upAction completion:^{
+		if (self.skUpAction) {
+			[self runAction:self.skUpAction completion:^{
 				self.sprite.texture = self.upTexture;
-				if (self.target && self.action)
-					if ([self.target respondsToSelector:self.action])
-						[self.target performSelector:self.action withObject:self];
+				if (self.target && action)
+					if ([self.target respondsToSelector:action])
+						[self.target performSelector:action withObject:self];
 			}];
 		} else {
 			self.sprite.texture = self.upTexture;
-			if (self.target && self.action)
-				if ([self.target respondsToSelector:self.action])
-					[self.target performSelector:self.action withObject:self];
+			if (self.target && action)
+				if ([self.target respondsToSelector:action])
+					[self.target performSelector:action withObject:self];
 			if (self.soundFileName)
 				[SKAction playSoundFileNamed:self.soundFileName waitForCompletion:NO];
 		}

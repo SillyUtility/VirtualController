@@ -149,3 +149,9 @@ VirtualControllerDriver::AttachNewVirtualDevice()
 Exit:
 	return ret;
 }
+
+VirtualControllerDevice *
+VirtualControllerDriver::GetDevice()
+{
+	return ivars->device;
+}

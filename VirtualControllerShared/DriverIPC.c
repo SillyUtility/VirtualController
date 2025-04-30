@@ -147,6 +147,7 @@ DeviceAdded(void *refcon, io_iterator_t iterator)
         ret = IOServiceOpen(device, mach_task_self_, 0, &connection);
         if (ret == kIOReturnSuccess) {
             Log("Opened connection to dext");
+            ((SLYDriverConnection *)refcon)->connection = connection;
             if (((SLYDriverConnection *)refcon)->connectCB)
                 ((SLYDriverConnection *)refcon)->connectCB();
         } else {
@@ -171,5 +172,47 @@ DeviceRemoved(void *refcon, io_iterator_t iterator)
         IOObjectRelease(device);
         if (((SLYDriverConnection *)refcon)->disconnectCB)
             ((SLYDriverConnection *)refcon)->disconnectCB();
+    }
+}
+
+void
+SLYSendInputReport(SLYDriverConnection *con, void *report, size_t reportSize)
+{
+    kern_return_t ret = kIOReturnSuccess;
+
+    Log("%{public}s", __func__);
+    ret = IOConnectCallStructMethod(con->connection,
+        SLYDriverDeviceInputReportMessageID,
+        report,
+        reportSize,
+        NULL,
+        0
+    );
+    if (ret != kIOReturnSuccess) {
+        Log("IOConnectCallStructMethod failed with error: 0x%08x.\n", ret);
+    }
+}
+
+void
+SLYSendError(SLYDriverConnection *con)
+{
+    kern_return_t ret = kIOReturnSuccess;
+    size_t msgSize = sizeof(SLYDriverErrorMessage);
+    SLYDriverErrorMessage msg = {
+        { SLYDriverErrorMessageID },
+        SLYDriverUnknownError, 0
+    };
+
+    Log("%{public}s", __func__);
+
+    ret = IOConnectCallStructMethod(con->connection,
+		SLYDriverErrorMessageID,
+        &msg,
+        msgSize,
+        NULL,
+        0
+    );
+    if (ret != kIOReturnSuccess) {
+        Log("IOConnectCallStructMethod failed with error: 0x%08x.\n", ret);
     }
 }

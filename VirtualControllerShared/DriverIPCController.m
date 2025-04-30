@@ -83,4 +83,9 @@ void DisconnectCallback(void)
 	self.connected = NO;
 }
 
+- (void)sendInputReport:(void *)report size:(size_t)reportSize
+{
+	SLYSendInputReport(_connection, report, reportSize);
+}
+
 @end

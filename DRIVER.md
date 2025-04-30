@@ -58,3 +58,28 @@ and declared in
     $(xcode-select -p)/Platforms/DriverKit.platform/Developer/SDKs/DriverKit.sdk/System/DriverKit/usr/include
 
 are available.
+
+
+# OpenEmu Control Binding
+
+	<key>OEGenericDeviceIdentifier_1209_2</key>
+	<array>
+		<dict>
+			<key>OENESButtonUp</key>
+			<string>OEGenericControlButton1446</string>
+			<key>OENESButtonDown</key>
+			<string>OEGenericControlButton1457</string>
+			<key>OENESButtonLeft</key>
+			<string>OEGenericControlButton1478</string>
+			<key>OENESButtonRight</key>
+			<string>OEGenericControlButton1469</string>
+			<key>OENESButtonA</key>
+			<string>OEGenericControlButton112</string>
+			<key>OENESButtonB</key>
+			<string>OEGenericControlButton213</string>
+			<key>OENESButtonStart</key>
+			<string>OEGenericControlButton6111</string>
+			<key>OENESButtonSelect</key>
+			<string>OEGenericControlButton6210</string>
+		</dict>
+	</array>
