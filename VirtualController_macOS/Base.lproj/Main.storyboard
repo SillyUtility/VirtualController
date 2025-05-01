@@ -28,6 +28,11 @@
                                                 <action selector="openSettings:" target="Ady-hI-5gd" id="eY3-t1-9y6"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Check for Controllers" keyEquivalent="C" id="hTR-EQ-MJe">
+                                            <connections>
+                                                <action selector="checkForControllers:" target="Ady-hI-5gd" id="ly2-nm-TmH"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -689,7 +694,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72" y="-108"/>
+            <point key="canvasLocation" x="68" y="-254"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">

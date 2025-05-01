@@ -20,5 +20,7 @@
 - (IBAction)showMainWindow:(id)sender;
 - (IBAction)openSettings:(id)sender;
 
+- (IBAction)checkForControllers:(id)sender;
+
 @end
 

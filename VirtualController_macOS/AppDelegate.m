@@ -6,12 +6,15 @@
 //
 
 #import <os/log.h>
+#import <GameController/GameController.h>
 
 #import "AppDelegate.h"
 #import "SLYSettingsWindowController.h"
 
 #import "VirtualController-Swift.h"
 #import "DriverIPCController.h"
+
+#define Log(fmt, ...) os_log(OS_LOG_DEFAULT, "[VirtualController(macOS.AppDelegate)] " fmt "\n", ##__VA_ARGS__)
 
 @interface AppDelegate ()
 @property (readonly) NSWindowController *mainWindowController;
@@ -31,7 +34,7 @@
 
 	// Don't show the main window when previewing a SwiftUI view
 	NSString *swiftPreviews = NSProcessInfo.processInfo.environment[@"XCODE_RUNNING_FOR_PREVIEWS"];
-	os_log(OS_LOG_DEFAULT, "swiftPreviews=%@", swiftPreviews);
+	Log("swiftPreviews=%@", swiftPreviews);
 	if (!swiftPreviews)
 		[self showMainWindow:self];
 }
@@ -68,6 +71,40 @@
 
 - (IBAction)openSettings:(id)sender {
 	[self.settingsWindowController showWindow:sender];
+}
+
+- (IBAction)checkForControllers:(id)sender
+{
+	Log("GCController.controllers=%{public}@", GCController.controllers);
+	Log("GCController.current=%{public}@", GCController.current);
+
+	IOHIDManagerRef manager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDManagerOptionNone);
+	IOHIDManagerSetDeviceMatching(manager, (__bridge CFDictionaryRef)@{
+		@kIOProviderClassKey: @kIOHIDDeviceKey,
+		@kIOHIDPrimaryUsagePageKey: @(0x01),
+		@kIOHIDPrimaryUsageKey: @(0x05),
+	});
+	CFSetRef devices = IOHIDManagerCopyDevices(manager);
+	if (!devices) {
+		Log("No matching devices");
+		return;
+	}
+
+	Log("Found devices=%{public}@", devices);
+
+	CFIndex count = CFSetGetCount(devices);
+	const void **values = calloc(count, sizeof(void *));
+	CFSetGetValues(devices, values);
+	for (CFIndex i = 0; i < count; i++) {
+		IOHIDDeviceRef device = (IOHIDDeviceRef)values[i];
+		Log("device=%{public}@", device);
+		Log("GameController.supportsHIDDevice? %{BOOL}d", [GCController supportsHIDDevice:device]);
+
+		// CFTypeRef prop = IOHIDDeviceGetProperty(device, (__bridge CFStringRef)@kIOHIDPrimaryUsageKey);
+		// if ([(__bridge NSNumber *)prop isEqualToNumber:@(0x05)]) {
+		// 	break;
+		// }
+	}
 }
 
 @end

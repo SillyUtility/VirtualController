@@ -4,5 +4,9 @@ PRODUCT_BUNDLE_IDENTIFIER = com.sillyutility.VirtualController
 
 CODE_SIGN_ENTITLEMENTS = VirtualController_macOS/VirtualController_macOS.entitlements
 
+GENERATE_INFOPLIST_FILE = YES
+INFOPLIST_FILE = VirtualController_macOS/Info.plist
+
 GCC_WARN_UNDECLARED_SELECTOR = NO
 WARNING_CFLAGS = -Wno-arc-performSelector-leaks
+

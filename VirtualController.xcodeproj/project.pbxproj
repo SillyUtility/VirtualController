@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C73B8942DB3A31B0072F7FB /* HIDDriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73B8932DB3A31B0072F7FB /* HIDDriverKit.framework */; };
+		2C76B6DA2DC3D21D00BB6B7F /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C76B6D92DC3D21D00BB6B7F /* GameController.framework */; };
 		2C864D802DAD64B000BA70BE /* DriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C864D7F2DAD64B000BA70BE /* DriverKit.framework */; };
 		2C864D892DAD64B000BA70BE /* com.sillyutility.VirtualController.VirtualControllerDriver.dext in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 2C864D7D2DAD64B000BA70BE /* com.sillyutility.VirtualController.VirtualControllerDriver.dext */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		2C73B8932DB3A31B0072F7FB /* HIDDriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HIDDriverKit.framework; path = Platforms/DriverKit.platform/Developer/SDKs/DriverKit24.2.sdk/System/DriverKit/System/Library/Frameworks/HIDDriverKit.framework; sourceTree = DEVELOPER_DIR; };
+		2C76B6D92DC3D21D00BB6B7F /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		2C864D2C2DAD5D6E00BA70BE /* VirtualController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C864D492DAD5E4400BA70BE /* virtualcontrollerctl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = virtualcontrollerctl; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C864D542DAD5EE700BA70BE /* ControllerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ControllerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +58,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2C76B6DD2DC3DEFB00BB6B7F /* Exceptions for "VirtualController_macOS" folder in "VirtualController_macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2C864D2B2DAD5D6E00BA70BE /* VirtualController_macOS */;
+		};
 		2C864D3F2DAD5D6E00BA70BE /* Exceptions for "VirtualControllerShared" folder in "VirtualController_macOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -112,6 +121,9 @@
 		};
 		2C864D2E2DAD5D6E00BA70BE /* VirtualController_macOS */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2C76B6DD2DC3DEFB00BB6B7F /* Exceptions for "VirtualController_macOS" folder in "VirtualController_macOS" target */,
+			);
 			path = VirtualController_macOS;
 			sourceTree = "<group>";
 		};
@@ -140,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C76B6DA2DC3D21D00BB6B7F /* GameController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +218,7 @@
 		2C864D7E2DAD64B000BA70BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C76B6D92DC3D21D00BB6B7F /* GameController.framework */,
 				2C73B8932DB3A31B0072F7FB /* HIDDriverKit.framework */,
 				2C864D7F2DAD64B000BA70BE /* DriverKit.framework */,
 			);
@@ -474,8 +488,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "VirtualController-macOS-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -502,8 +514,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "VirtualController-macOS-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
