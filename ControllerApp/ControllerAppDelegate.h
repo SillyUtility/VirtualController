@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ControllerAppDelegate.h
 //  ControllerApp
 //
 //  Created by Eddie Hillenbrand on 4/14/25.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface ControllerAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

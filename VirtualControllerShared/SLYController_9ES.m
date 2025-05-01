@@ -7,18 +7,19 @@
 //
 
 #import <os/log.h>
-#import <Carbon/Carbon.h>
 
 #import "SLYController_9ES.h"
 #import "SLYController.h"
 
 #import "SLYButton.h"
-#import "DriverIPCController.h"
-#import "DriverIPCMessages.h"
 #import "Devices.h"
 
+#if TARGET_OS_OSX
+#import "DriverIPCController.h"
+#import "DriverIPCMessages.h"
 #import "NSApplication+Additions.h"
 #import "AppDelegate.h"
+#endif
 
 #define Log(fmt, ...) os_log(OS_LOG_DEFAULT, "[VirtualController(SLYController_9ES)] " fmt "\n", ##__VA_ARGS__)
 
@@ -85,8 +86,10 @@
 	inputReport.Button_A = (sender == _ButtonA);
 	inputReport.Button_B = (sender == _ButtonB);
 
+#if TARGET_OS_OSX
 	[NSApp.appDelegate.driverIPC sendInputReport:&inputReport
 		size:sizeof(NineES_HIDInputReport1)];
+#endif
 }
 
 - (void)buttonUp:(SLYButton *)sender
@@ -102,8 +105,10 @@
 	inputReport.Button_A = (sender != _ButtonA);
 	inputReport.Button_B = (sender != _ButtonB);
 
+#if TARGET_OS_OSX
 	[NSApp.appDelegate.driverIPC sendInputReport:&inputReport
 		size:sizeof(NineES_HIDInputReport1)];
+#endif
 }
 
 @end

@@ -1,1 +1,8 @@
 // ControllerApp.xcconfig
+
+IPHONEOS_DEPLOYMENT_TARGET = 12
+
+GCC_WARN_UNDECLARED_SELECTOR = NO
+WARNING_CFLAGS = -Wno-arc-performSelector-leaks
+
+#include? "Local.xcconfig"

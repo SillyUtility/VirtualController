@@ -140,7 +140,11 @@ NSString *_defaultDownActionName = SLYDefaultDownActionName;
 		self.label = SKLabelNode.new;
 		self.label.fontName = @"Retro-Pixel-Arcade-Regular";
 		self.label.fontSize = 32;
+#if TARGET_OS_OSX
 		self.label.fontColor = NSColor.whiteColor;
+#else
+		self.label.fontColor = UIColor.whiteColor;
+#endif
 		self.label.text = self.title;
 		self.label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
 		self.label.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;

@@ -6,76 +6,74 @@
 //  Copyright © 2025 Silly Utility. All rights reserved.
 //
 
+#import <os/log.h>
+
 #import "GameScene.h"
 
+#import "SLYButton.h"
+#import "SLYController.h"
+#import "SLYController_9ES.h"
+
+#define Log(fmt, ...) os_log(OS_LOG_DEFAULT, "[VirtualController(ControllerApp.GameScene)] " fmt "\n", ##__VA_ARGS__)
+
 @implementation GameScene {
-    SKShapeNode *_spinnyNode;
-    SKLabelNode *_label;
+	SLYController_9ES *_nesController;
 }
 
-- (void)didMoveToView:(SKView *)view {
-    // Setup your scene here
-    
-    // Get label node from scene and store it for use later
-    _label = (SKLabelNode *)[self childNodeWithName:@"//helloLabel"];
-    
-    _label.alpha = 0.0;
-    [_label runAction:[SKAction fadeInWithDuration:2.0]];
-    
-    CGFloat w = (self.size.width + self.size.height) * 0.05;
-    
-    // Create shape node to use during mouse interaction
-    _spinnyNode = [SKShapeNode shapeNodeWithRectOfSize:CGSizeMake(w, w) cornerRadius:w * 0.3];
-    _spinnyNode.lineWidth = 2.5;
-    
-    [_spinnyNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI duration:1]]];
-    [_spinnyNode runAction:[SKAction sequence:@[
-                                                [SKAction waitForDuration:0.5],
-                                                [SKAction fadeOutWithDuration:0.5],
-                                                [SKAction removeFromParent],
-                                                ]]];
+- (void)add9ES_Controller
+{
+	_nesController = [self controller_9ES];
+	Log("%{public}s _nesController=%{public}@", __func__, _nesController);
+	Log("%{public}s _nesController.scene=%{public}@", __func__, _nesController.scene);
+	Log("%{public}s _nesController.parent=%{public}@", __func__, _nesController.parent);
+	_nesController.xScale = _nesController.yScale = 2;
+}
+
+- (void)didMoveToView:(SKView *)view
+{
+	if (!_nesController)
+		[self performSelectorOnMainThread:@selector(add9ES_Controller) withObject:nil waitUntilDone:NO];
 }
 
 
-- (void)touchDownAtPoint:(CGPoint)pos {
-    SKShapeNode *n = [_spinnyNode copy];
-    n.position = pos;
-    n.strokeColor = [SKColor greenColor];
-    [self addChild:n];
+- (void)touchDownAtPoint:(CGPoint)pos
+{
 }
 
-- (void)touchMovedToPoint:(CGPoint)pos {
-    SKShapeNode *n = [_spinnyNode copy];
-    n.position = pos;
-    n.strokeColor = [SKColor blueColor];
-    [self addChild:n];
+- (void)touchMovedToPoint:(CGPoint)pos
+{
 }
 
-- (void)touchUpAtPoint:(CGPoint)pos {
-    SKShapeNode *n = [_spinnyNode copy];
-    n.position = pos;
-    n.strokeColor = [SKColor redColor];
-    [self addChild:n];
+- (void)touchUpAtPoint:(CGPoint)pos
+{
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    // Run 'Pulse' action from 'Actions.sks'
-    [_label runAction:[SKAction actionNamed:@"Pulse"] withKey:@"fadeInOut"];
-    
-    for (UITouch *t in touches) {[self touchDownAtPoint:[t locationInNode:self]];}
-}
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    for (UITouch *t in touches) {[self touchMovedToPoint:[t locationInNode:self]];}
-}
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    for (UITouch *t in touches) {[self touchUpAtPoint:[t locationInNode:self]];}
-}
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    for (UITouch *t in touches) {[self touchUpAtPoint:[t locationInNode:self]];}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *t in touches)
+		[self touchDownAtPoint:[t locationInNode:self]];
 }
 
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *t in touches)
+		[self touchMovedToPoint:[t locationInNode:self]];
+}
 
--(void)update:(CFTimeInterval)currentTime {
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *t in touches)
+		[self touchUpAtPoint:[t locationInNode:self]];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *t in touches)
+		[self touchUpAtPoint:[t locationInNode:self]];
+}
+
+-(void)update:(CFTimeInterval)currentTime
+{
     // Called before each frame is rendered
 }
 
