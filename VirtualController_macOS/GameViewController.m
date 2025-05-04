@@ -37,8 +37,8 @@ static void *SLYDriverIPCConnectionKVOContext = &SLYDriverIPCConnectionKVOContex
     [skView presentScene:self.sceneNode];
     
     skView.ignoresSiblingOrder = YES;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
+    //skView.showsFPS = YES;
+    //skView.showsNodeCount = YES;
 
 	[self addObservers];
 	

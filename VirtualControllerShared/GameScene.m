@@ -34,7 +34,8 @@
 	SLYController_9ES *_nesController;
 }
 
-+ (GameScene *)newGameScene {
++ (GameScene *)newGameScene
+{
     GameScene *scene = (GameScene *)[SKScene nodeWithFileNamed:@"GameScene"];
     if (!scene) {
         NSLog(@"Failed to load GameScene.sks");
@@ -138,14 +139,16 @@
 	[self repositionDriverIPCState];
 }
 
-- (void)add9ES_Controller {
+- (void)add9ES_Controller
+{
 	_nesController = [self controller_9ES];
 	Log("%{public}s _nesController=%{public}@", __func__, _nesController);
 	Log("%{public}s _nesController.scene=%{public}@", __func__, _nesController.scene);
 	Log("%{public}s _nesController.parent=%{public}@", __func__, _nesController.parent);
 }
 
-- (void)setUpScene {
+- (void)setUpScene
+{
 	_textureAtlas = [SKTextureAtlas atlasNamed:@"Sprites"];
 
 	_driverInstalledLabel = (SKLabelNode *)[self childNodeWithName:@"//DriverInstalledLabel"];
@@ -183,76 +186,62 @@
 		[self removeDiverInstalledLabel];
 		[self showDriverNotInstalledLabel];
 	}
-
-    // Create shape node to use during mouse interaction
-    CGFloat w = (self.size.width + self.size.height) * 0.05;
-    _spinnyNode = [SKShapeNode shapeNodeWithRectOfSize:CGSizeMake(w, w) cornerRadius:w * 0.3];
-
-    _spinnyNode.lineWidth = 4.0;
-    [_spinnyNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:M_PI duration:1]]];
-    [_spinnyNode runAction:[SKAction sequence:@[
-        [SKAction waitForDuration:0.5],
-        [SKAction fadeOutWithDuration:0.5],
-        [SKAction removeFromParent],
-    ]]];
 }
 
-- (void)didMoveToView:(SKView *)view {
+- (void)didMoveToView:(SKView *)view
+{
 	//Log("%{public}s", __func__);
 	[self setUpScene];
 }
 
-- (void)makeSpinnyAtPoint:(CGPoint)pos color:(SKColor *)color {
-    SKShapeNode *spinny = [_spinnyNode copy];
-    spinny.position = pos;
-    spinny.strokeColor = color;
-    [self addChild:spinny];
-}
-
--(void)update:(CFTimeInterval)currentTime {
+-(void)update:(CFTimeInterval)currentTime
+{
     // Called before each frame is rendered
 }
 
 #if TARGET_OS_IOS || TARGET_OS_TV
-// Touch-based event handling
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [_label runAction:[SKAction actionNamed:@"Pulse"] withKey:@"fadeInOut"];
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *t in touches)
+		(void)t;
+}
 
-    for (UITouch *t in touches) {
-        [self makeSpinnyAtPoint:[t locationInNode:self] color:[SKColor greenColor]];
-    }
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *t in touches)
+		(void)t;
 }
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    for (UITouch *t in touches) {
-        [self makeSpinnyAtPoint:[t locationInNode:self] color:[SKColor blueColor]];
-    }
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *t in touches)
+		(void)t;
 }
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    for (UITouch *t in touches) {
-        [self makeSpinnyAtPoint:[t locationInNode:self] color:[SKColor redColor]];
-    }
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *t in touches)
+		(void)t;
 }
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    for (UITouch *t in touches) {
-        [self makeSpinnyAtPoint:[t locationInNode:self] color:[SKColor redColor]];
-    }
-}
+
 #endif
 
 #if TARGET_OS_OSX
-// Mouse-based event handling
 
-- (void)mouseDown:(NSEvent *)event {
-    [self makeSpinnyAtPoint:[event locationInNode:self] color:[SKColor greenColor]];
+- (void)mouseDown:(NSEvent *)event
+{
+
 }
 
-- (void)mouseDragged:(NSEvent *)event {
-    [self makeSpinnyAtPoint:[event locationInNode:self] color:[SKColor blueColor]];
+- (void)mouseDragged:(NSEvent *)event
+{
+
 }
 
-- (void)mouseUp:(NSEvent *)event {
-    [self makeSpinnyAtPoint:[event locationInNode:self] color:[SKColor redColor]];
+- (void)mouseUp:(NSEvent *)event
+{
+
 }
 
 #endif
