@@ -40,6 +40,18 @@ public:
 
 	virtual OSData *
 	newReportDescriptor(void) override;
+
+	/* IOHIDDevice */
+
+	virtual kern_return_t
+	getReport(IOMemoryDescriptor *report,
+		IOHIDReportType reportType, IOOptionBits options,
+		uint32_t completionTimeout, OSAction *action) override;
+
+	virtual kern_return_t
+	setReport(IOMemoryDescriptor *report,
+		IOHIDReportType reportType, IOOptionBits options,
+		uint32_t completionTimeout, OSAction *action) override;
 };
 
 #endif /* VirtualControllerDevice_h */

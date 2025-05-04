@@ -217,3 +217,43 @@ VirtualControllerDevice::newReportDescriptor(void)
 Exit:
 	return descriptor;
 }
+
+kern_return_t
+VirtualControllerDevice::getReport(IOMemoryDescriptor *report,
+	IOHIDReportType reportType, IOOptionBits options,
+	uint32_t completionTimeout, OSAction *action)
+{
+	kern_return_t ret = kIOReturnSuccess;
+
+	Log("%{public}s", __func__);
+
+	ret = super::getReport(report, reportType, options,
+		completionTimeout, action);
+	if (ret != kIOReturnSuccess) {
+		Log("super %{public}s failed with error: 0x%08x", __func__, ret);
+		goto Exit;
+	}
+
+Exit:
+	return ret;
+}
+
+kern_return_t
+VirtualControllerDevice::setReport(IOMemoryDescriptor *report,
+	IOHIDReportType reportType, IOOptionBits options,
+	uint32_t completionTimeout, OSAction *action)
+{
+	kern_return_t ret = kIOReturnSuccess;
+
+	Log("%{public}s", __func__);
+
+	ret = super::setReport(report, reportType, options,
+		completionTimeout, action);
+	if (ret != kIOReturnSuccess) {
+		Log("super %{public}s failed with error: 0x%08x", __func__, ret);
+		goto Exit;
+	}
+
+Exit:
+	return ret;
+}
