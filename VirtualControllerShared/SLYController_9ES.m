@@ -75,6 +75,7 @@
 
 - (void)buttonDown:(SLYButton *)sender
 {
+	Log("%{public}s sender=%{public}@", __func__, sender);
 	NineES_HIDInputReport1 inputReport = {};
 	inputReport.ReportID = 1;
 	inputReport.DPad_Up = (sender == _DPadUp);
@@ -94,16 +95,10 @@
 
 - (void)buttonUp:(SLYButton *)sender
 {
+	Log("%{public}s sender=%{public}@", __func__, sender);
 	NineES_HIDInputReport1 inputReport = {};
 	inputReport.ReportID = 1;
-	inputReport.DPad_Up = (sender != _DPadUp);
-	inputReport.DPad_Down = (sender != _DPadDown);
-	inputReport.DPad_Left = (sender != _DPadLeft);
-	inputReport.DPad_Right = (sender != _DPadRight);
-	inputReport.Select = (sender != _Select);
-	inputReport.Start = (sender != _Start);
-	inputReport.Button_A = (sender != _ButtonA);
-	inputReport.Button_B = (sender != _ButtonB);
+	inputReport.Buttons = 0;
 
 #if TARGET_OS_OSX
 	[NSApp.appDelegate.driverIPC sendInputReport:&inputReport

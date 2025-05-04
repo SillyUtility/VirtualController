@@ -127,12 +127,17 @@ struct Nine_ES_HidReportInput1
 
 typedef struct __attribute__((packed)) {
     uint8_t ReportID;
-    uint8_t DPad_Up    : 1;
-    uint8_t DPad_Down  : 1;
-    uint8_t DPad_Left  : 1;
-    uint8_t DPad_Right : 1;
-    uint8_t Select     : 1;
-    uint8_t Start      : 1;
-    uint8_t Button_A   : 1;
-    uint8_t Button_B   : 1;
+	union {
+		uint8_t Buttons;
+		struct {
+			uint8_t DPad_Up    : 1;
+			uint8_t DPad_Down  : 1;
+			uint8_t DPad_Left  : 1;
+			uint8_t DPad_Right : 1;
+			uint8_t Select     : 1;
+			uint8_t Start      : 1;
+			uint8_t Button_A   : 1;
+			uint8_t Button_B   : 1;
+		};
+	};
 } NineES_HIDInputReport1;
