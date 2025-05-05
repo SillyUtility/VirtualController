@@ -14,4 +14,8 @@
 - (void)driverInstallationStateChange;
 - (void)driverIPCStateChange;
 
+- (void)controllerDisconnected;
+- (void)controllerConnecting;
+- (void)controllerConnected;
+
 @end

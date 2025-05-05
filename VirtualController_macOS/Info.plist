@@ -23,5 +23,11 @@
 	</array>
 	<key>GCSupportsControllerUserInteraction</key>
 	<true/>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Requries the local network to connect to the controller app.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_su-virtgc01._tcp</string>
+	</array>
 </dict>
 </plist>

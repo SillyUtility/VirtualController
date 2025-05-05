@@ -32,6 +32,7 @@
 	SLYButton *_settingsButton;
 	SKSpriteNode *_driverIPCState;
 	SLYController_9ES *_nesController;
+	SKSpriteNode *_controllerConnectionState;
 }
 
 + (GameScene *)newGameScene
@@ -179,6 +180,10 @@
 	Log("%{public}s _driverIPCState=%{public}@", __func__, _driverIPCState);
 	[self driverDisconnected];
 
+	_controllerConnectionState = (SKSpriteNode *)[self childNodeWithName:@"//ControllerConnectionState"];
+	Log("%{public}s _controllerConnectionState=%{public}@", __func__, _controllerConnectionState);
+	_controllerConnectionState.hidden = YES;
+
 	if (NSApp.appDelegate.driverInstallationController.installed) {
 		[self showDriverInstalledLabel];
 		[self removeDiverNotInstalledLabel];
@@ -271,6 +276,21 @@
 {
 	Log("%{public}s", __func__);
 	[NSApp.appDelegate performSelector:_cmd withObject:sender];
+}
+
+- (void)controllerDisconnected
+{
+
+}
+
+- (void)controllerConnecting
+{
+
+}
+
+- (void)controllerConnected
+{
+
 }
 
 @end
