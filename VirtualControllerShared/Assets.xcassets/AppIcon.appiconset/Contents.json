@@ -21,31 +21,37 @@
       "size" : "32x32"
     },
     {
+      "filename" : "macOS_AppIcon_128.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
+      "filename" : "macOS_AppIcon_128@2x.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
+      "filename" : "macOS_AppIcon_256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
+      "filename" : "macOS_AppIcon_256@2x.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
+      "filename" : "macOS_AppStore.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
+      "filename" : "macOS_AppStore@2x.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
