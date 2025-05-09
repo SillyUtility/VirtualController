@@ -133,11 +133,20 @@
 	_driverIPCState.position = CGPointMake(x, y);
 }
 
+- (void)repositionControllerConnectionState
+{
+	CGSize ssize = _controllerConnectionState.scene.size;
+	CGFloat x = -(ssize.width / 2) + 10;
+	CGFloat y = -(ssize.height / 2) + 10;
+	_controllerConnectionState.position = CGPointMake(x, y);
+}
+
 - (void)didChangeSize:(CGSize)oldSize
 {
 	// Log("%{public}s", __func__);
 	[self repositionDriverInstalledLabel];
 	[self repositionDriverIPCState];
+	[self repositionControllerConnectionState];
 }
 
 - (void)add9ES_Controller
@@ -182,7 +191,6 @@
 
 	_controllerConnectionState = (SKSpriteNode *)[self childNodeWithName:@"//ControllerConnectionState"];
 	Log("%{public}s _controllerConnectionState=%{public}@", __func__, _controllerConnectionState);
-	_controllerConnectionState.hidden = YES;
 
 	if (NSApp.appDelegate.driverInstallationController.installed) {
 		[self showDriverInstalledLabel];
@@ -280,7 +288,7 @@
 
 - (void)controllerDisconnected
 {
-
+	_controllerConnectionState.texture = [_textureAtlas textureNamed:@"ControllerDisconnected"];
 }
 
 - (void)controllerConnecting
@@ -290,7 +298,7 @@
 
 - (void)controllerConnected
 {
-
+	_controllerConnectionState.texture = [_textureAtlas textureNamed:@"ControllerConnected"];
 }
 
 @end

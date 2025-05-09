@@ -188,12 +188,15 @@ static void *SLYDriverIPCConnectionKVOContext = &SLYDriverIPCConnectionKVOContex
 	case MCSessionStateConnected:
 		Log("peer=%{public}@ connected", peerID);
 		self.playerPeerID = peerID;
+		[self.sceneNode controllerConnected];
 		return;
 	case MCSessionStateConnecting:
 		Log("peer=%{public}@ is connecting", peerID);
+		[self.sceneNode controllerConnecting];
 		return;
 	case MCSessionStateNotConnected:
 		Log("peer=%{public}@ disconnected", peerID);
+		[self.sceneNode controllerDisconnected];
 		self.playerPeerID = nil;
 		return;
 	default:
