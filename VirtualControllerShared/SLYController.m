@@ -12,14 +12,40 @@
 
 #define Log(fmt, ...) os_log(OS_LOG_DEFAULT, "[VirtualController(SLYController)] " fmt "\n", ##__VA_ARGS__)
 
+NSString * const SLYControllerUserDataTextureAtlasNameKey = @"TextureAtlasName";
+NSString * const SLYControllerUserDataTextureNameKey = @"TextureName";
+
 @interface SLYController ()
 @property SKReferenceNode *referenceNode;
+@property (nullable) NSString *textureAtlasName;
 @end
 
 @implementation SLYController
 
++ (NSString *)deviceName
+{
+	return @"";
+}
+
 - (void)configure
 {
+	if (self.userData[SLYControllerUserDataTextureAtlasNameKey]) {
+		self.textureAtlasName = self.userData[SLYControllerUserDataTextureAtlasNameKey];
+	}
+	SKTextureAtlas *textureAtlas = [SKTextureAtlas atlasNamed:self.textureAtlasName];
+
+	if (self.userData[SLYControllerUserDataTextureNameKey]) {
+		NSString *textureName = self.userData[SLYControllerUserDataTextureNameKey];
+		self.texture = [textureAtlas textureNamed:textureName];
+	}
+
+	NSArray *children = self.children;
+	for (SKSpriteNode *node in children) {
+		if (node.userData[SLYControllerUserDataTextureNameKey]) {
+			NSString *textureName = node.userData[SLYControllerUserDataTextureNameKey];
+			node.texture = [textureAtlas textureNamed:textureName];
+		}
+	}
 }
 
 @end

@@ -26,7 +26,6 @@
 	Log("%{public}s _nesController=%{public}@", __func__, _nesController);
 	Log("%{public}s _nesController.scene=%{public}@", __func__, _nesController.scene);
 	Log("%{public}s _nesController.parent=%{public}@", __func__, _nesController.parent);
-	_nesController.xScale = _nesController.yScale = 2;
 }
 
 - (void)didMoveToView:(SKView *)view

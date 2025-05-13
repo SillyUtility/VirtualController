@@ -79,6 +79,7 @@
 		2C864D3F2DAD5D6E00BA70BE /* Exceptions for "VirtualControllerShared" folder in "VirtualController_macOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				9ES_HomeButton.sks,
 				9ES.sks,
 				Actions.sks,
 				Assets.xcassets,
@@ -106,6 +107,7 @@
 		2C8E46CB2DC2A822005B5381 /* Exceptions for "VirtualControllerShared" folder in "ControllerApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				9ES_HomeButton.sks,
 				9ES.sks,
 				Controllers.xcassets,
 				"NSObject+PeerID.m",

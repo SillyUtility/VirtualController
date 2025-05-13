@@ -7,6 +7,9 @@
 //
 
 #import <os/log.h>
+#if TARGET_OS_IOS
+#import <UIKit/UIKit.h>
+#endif
 
 #import "SLYController_9ES.h"
 #import "SLYController.h"
@@ -29,9 +32,20 @@
 @end
 
 @implementation SLYController_9ES
++ (NSString *)deviceName
+{
+#if TARGET_OS_IOS
+	// UIDevice *device = UIDevice.currentDevice;
+	// UIUserInterfaceIdiom idom = device.userInterfaceIdiom;
+	return @"9ES_HomeButton";
+#else
+	return @"9ES";
+#endif
+}
 
 - (void)configure
 {
+	[super configure];
 	_DPadUp = [self buttonWithName:@".//DPad_Up" forceConfigure:YES];
 	_DPadUp.target = self;
 	_DPadUp.downAction = @selector(buttonDown:);
@@ -112,7 +126,10 @@
 
 - (SLYController_9ES *)controller_9ES
 {
-	SLYController_9ES *controller = (SLYController_9ES *)[self controllerWithName:@"9ES"];
+	NSString *name = SLYController_9ES.deviceName;
+	Log("DEVICE_NAME=%{public}@", name);
+	SLYController_9ES *controller =
+		(SLYController_9ES *)[self controllerWithName:name];
 	[controller configure];
 	return controller;
 }

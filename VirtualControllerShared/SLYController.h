@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLYController : SKSpriteNode
+
+@property (class,readonly) NSString *deviceName;
+
 - (void)configure;
 @end
 
