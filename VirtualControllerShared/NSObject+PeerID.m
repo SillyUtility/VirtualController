@@ -22,8 +22,9 @@ NSString * const kServiceType = @"su-virtgc01"; // max 15 characters
 {
 	NSString *displayName = nil;
 #if TARGET_OS_OSX
-	// On macOS the login name is probably a good enough display name
-	displayName = NSProcessInfo.processInfo.userName;
+	// On macOS the login name (or hostname) is probably a good enough display name
+	//displayName = NSProcessInfo.processInfo.userName;
+	displayName = NSProcessInfo.processInfo.hostName;
 #else
 	// On iOS the device name is probably a good enough display name
 	displayName = UIDevice.currentDevice.name;

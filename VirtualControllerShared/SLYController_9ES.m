@@ -22,6 +22,8 @@
 #import "DriverIPCMessages.h"
 #import "NSApplication+Additions.h"
 #import "AppDelegate.h"
+#else
+#import "SLYInputReporter.h"
 #endif
 
 #define Log(fmt, ...) os_log(OS_LOG_DEFAULT, "[VirtualController(SLYController_9ES)] " fmt "\n", ##__VA_ARGS__)
@@ -31,7 +33,10 @@
 - (void)buttonUp:(SLYButton *)sender;
 @end
 
-@implementation SLYController_9ES
+@implementation SLYController_9ES {
+	NineES_HIDInputReport1 inputReport;
+}
+
 + (NSString *)deviceName
 {
 #if TARGET_OS_IOS
@@ -46,6 +51,10 @@
 - (void)configure
 {
 	[super configure];
+
+	inputReport.ReportID = 1;
+	inputReport.Buttons = 0;
+
 	_DPadUp = [self buttonWithName:@".//DPad_Up" forceConfigure:YES];
 	_DPadUp.target = self;
 	_DPadUp.downAction = @selector(buttonDown:);
@@ -90,19 +99,29 @@
 - (void)buttonDown:(SLYButton *)sender
 {
 	Log("%{public}s sender=%{public}@", __func__, sender);
-	NineES_HIDInputReport1 inputReport = {};
-	inputReport.ReportID = 1;
-	inputReport.DPad_Up = (sender == _DPadUp);
-	inputReport.DPad_Down = (sender == _DPadDown);
-	inputReport.DPad_Left = (sender == _DPadLeft);
-	inputReport.DPad_Right = (sender == _DPadRight);
-	inputReport.Select = (sender == _Select);
-	inputReport.Start = (sender == _Start);
-	inputReport.Button_A = (sender == _ButtonA);
-	inputReport.Button_B = (sender == _ButtonB);
+
+	if (sender == _DPadUp)
+		inputReport.DPad_Up = 1;
+	if (sender == _DPadDown)
+		inputReport.DPad_Down = 1;
+	if (sender == _DPadLeft)
+		inputReport.DPad_Left = 1;
+	if (sender == _DPadRight)
+		inputReport.DPad_Right = 1;
+	if (sender == _Select)
+		inputReport.Select = 1;
+	if (sender == _Start)
+		inputReport.Start = 1;
+	if (sender == _ButtonA)
+		inputReport.Button_A = 1;
+	if (sender == _ButtonB)
+		inputReport.Button_B = 1;
 
 #if TARGET_OS_OSX
 	[NSApp.appDelegate.driverIPC sendInputReport:&inputReport
+		size:sizeof(NineES_HIDInputReport1)];
+#else
+	[self.inputReporter sendInputReport:&inputReport
 		size:sizeof(NineES_HIDInputReport1)];
 #endif
 }
@@ -110,12 +129,29 @@
 - (void)buttonUp:(SLYButton *)sender
 {
 	Log("%{public}s sender=%{public}@", __func__, sender);
-	NineES_HIDInputReport1 inputReport = {};
-	inputReport.ReportID = 1;
-	inputReport.Buttons = 0;
+
+	if (sender == _DPadUp)
+		inputReport.DPad_Up = 0;
+	if (sender == _DPadDown)
+		inputReport.DPad_Down = 0;
+	if (sender == _DPadLeft)
+		inputReport.DPad_Left = 0;
+	if (sender == _DPadRight)
+		inputReport.DPad_Right = 0;
+	if (sender == _Select)
+		inputReport.Select = 0;
+	if (sender == _Start)
+		inputReport.Start = 0;
+	if (sender == _ButtonA)
+		inputReport.Button_A = 0;
+	if (sender == _ButtonB)
+		inputReport.Button_B = 0;
 
 #if TARGET_OS_OSX
 	[NSApp.appDelegate.driverIPC sendInputReport:&inputReport
+		size:sizeof(NineES_HIDInputReport1)];
+#else
+	[self.inputReporter sendInputReport:&inputReport
 		size:sizeof(NineES_HIDInputReport1)];
 #endif
 }

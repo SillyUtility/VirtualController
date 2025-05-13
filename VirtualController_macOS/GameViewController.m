@@ -208,6 +208,8 @@ static void *SLYDriverIPCConnectionKVOContext = &SLYDriverIPCConnectionKVOContex
 	fromPeer:(MCPeerID *)peerID
 {
 	Log("%{public}s peer=%{public}@", __func__, peerID);
+
+	[NSApp.appDelegate.driverIPC sendInputReport:data.bytes size:data.length];
 }
 
 - (void)session:(MCSession *)session

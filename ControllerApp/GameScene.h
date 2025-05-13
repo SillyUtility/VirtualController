@@ -8,6 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface GameScene : SKScene
+@protocol SLYInputReporter;
 
+@interface GameScene : SKScene
+@property(nonatomic, weak, nullable) id<SLYInputReporter> inputReporter;
 @end

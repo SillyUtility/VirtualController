@@ -39,6 +39,7 @@
 
 	// Load the SKScene from 'GameScene.sks'
 	self.sceneNode = (GameScene *)[SKScene nodeWithFileNamed:@"GameScene"];
+	self.sceneNode.inputReporter = self;
 
 	self.sceneNode.scaleMode = SKSceneScaleModeResizeFill;
 
@@ -172,6 +173,36 @@
 	didNotStartAdvertisingPeer:(NSError *)error
 {
 	Log("%{public}s error=%{public}@", __func__, error);
+}
+
+#pragma mark - Input Reporting
+
+- (void)sendInputReport:(void *)report size:(size_t)reportSize
+{
+	NSData *data = nil;
+	NSError *err = nil;
+	BOOL ret = NO;
+
+	Log("%{public}s", __func__);
+
+	if (!self.peerSession)
+		return;
+
+	if (!self.macPeerID)
+		return;
+
+	data = [NSData dataWithBytes:report length:reportSize];
+	ret = [self.peerSession sendData:data
+        toPeers:self.peerSession.connectedPeers
+        withMode:MCSessionSendDataReliable
+        error:&err
+    ];
+	if (!ret || err) {
+		Log("Faild sending input report err=%{public}@", err);
+		return;
+	}
+
+	Log("Sent input report");
 }
 
 @end

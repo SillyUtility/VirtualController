@@ -10,11 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#if TARGET_OS_IPHONE
+@protocol SLYInputReporter;
+#endif
+
 @interface SLYController : SKSpriteNode
 
 @property (class,readonly) NSString *deviceName;
 
 - (void)configure;
+
+#if TARGET_OS_IPHONE
+@property(nonatomic, weak, nullable) id<SLYInputReporter> inputReporter;
+#endif
+
 @end
 
 @interface SKNode (SLYController)
