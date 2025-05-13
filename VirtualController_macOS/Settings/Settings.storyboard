@@ -10,7 +10,7 @@
         <scene sceneID="pM0-SW-hs9">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="1Nr-oX-xHC" customClass="SLYSettingsWindowController" sceneMemberID="viewController">
-                    <window key="window" title="Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ccN-rl-ZlF">
+                    <window key="window" title="Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="VirtualControllerSettingsWindow" animationBehavior="default" id="ccN-rl-ZlF">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="425" y="473" width="480" height="270"/>
