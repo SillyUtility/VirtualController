@@ -9,6 +9,7 @@ supports HID game controllers on a Mac (and in the future, an iPad
 with an M-series chip).
 
 ## Project Goals
+
 - Open source
 - Emulates real-world retro devices
 - Emulated device indistinguishable from a physical device
@@ -16,13 +17,15 @@ with an M-series chip).
 - Driver distributed on the Mac App Store from the host app
 - iPhone app, driver, and devices require NO setup or configuration
 
+See the wiki for more [Project Goals…](https://github.com/SillyUtility/VirtualController/wiki/Project-Goals)
+
 ### Minimum Requirements
 
 - **Controller App**: iOS 12+
 - **Mac Driver**: macOS 10.15+
 - **iPad (with M series chip) Driver**: iOS 16+
 
-See the wiki for more detail…
+See the wiki for complete [minimum requirements and minimum supported Apple devices…](https://github.com/SillyUtility/VirtualController/wiki/Minimum-Requirements)
 
 ## Progress
 
@@ -33,34 +36,37 @@ See the wiki for more detail…
 - iPhone app sends button state to the driver
 - Works with OpenEmu and other apps that recognize HID game controllers
 
+See the wiki for a [complete run down of progress…](https://github.com/SillyUtility/VirtualController/wiki/Progress)
+
 ## Emulated Devices
 
-| Device Name                  | Progress | Virtual Device Name*          |
-|:-----------------------------|:---------|:------------------------------|
-| NES Controller               | 75%      | 9ES Controller                |
-| Apple Pippin                 | Planned  | Pip                           |
-| Atari 2600 CX40 Joystick     | Planned  | Alfa 2600 Joystick            |
-| Atari 2600 CX30 Paddle       | Planned  | Alfa 2600 Paddle              |
-| ColecoVision Hand Controller | Planned  | CharlieVictor Hand Controller |
-| GameBoy                      | Planned  | GolfBravo                     |
-| GameBoy Advance              | Planned  | GolfBravo Advance             |
-| GameGear                     | Planned  | GolfGear                      |
-| Intellivision                | Planned  | Indiavision                   |
-| NeoGeo                       | Planned  | NovemberGolf                  |
-| NeoGeo Pocket                | Planned  | NovemberGolf Pocket           |
-| Nintendo DS                  | Likely   | Nine DS                       |
-| Sega Genesis                 | Planned  | Sierra Golf                   |
-| Sega Master System           | Planned  | Sierra Mike System            |
-| Sega Saturn                  | Planned  | Sierra Jupiter                |
-| SNES                         | Planned  | S9ES                          |
-| TurboGrafx-16                | Planned  | TangoGolf-16                  |
-| Vectrex                      | Planned  | Victrex                       |
-| Virtual Boy                  | Planned  | Victor Bravo                  |
+This list is a preview of some game controllers that will be supported
+and their progress.
 
-\* _names likely to change_
+| Device Name                  | Progress | Virtual Device Name<sup*</sup> |
+|:-----------------------------|:---------|:-------------------------------|
+| NES Controller               | 75%      | 9ES Controller                 |
+| Apple Pippin                 | Planned  | Pip                            |
+| Atari 2600 CX40 Joystick     | Planned  | Alfa 2600 Joystick             |
+| Atari 2600 CX30 Paddle       | Planned  | Alfa 2600 Paddle               |
+| ColecoVision Hand Controller | Planned  | CharlieVictor Hand Controller  |
+| GameBoy                      | Planned  | GolfBravo                      |
+| GameBoy Advance              | Planned  | GolfBravo Advance              |
+| GameGear                     | Planned  | GolfGear                       |
+| Intellivision                | Planned  | Indiavision                    |
+| Nintendo DS                  | Likely   | Nine DS                        |
+| Sega Genesis                 | Planned  | Sierra Golf                    |
+| Sega Master System           | Planned  | Sierra Mike System             |
+| Sega Saturn                  | Planned  | Sierra Jupiter                 |
+| SNES                         | Planned  | S9ES                           |
+| TurboGrafx-16                | Planned  | TangoGolf-16                   |
+| Vectrex                      | Planned  | Victrex                        |
+| Virtual Boy                  | Planned  | Victor Bravo                   |
 
-See the wiki for a complete list of devices…
+<sup>\*</sup> _names likely to change_
+
+Don’t see your favorite game controller? See the wiki for [more devices…](https://github.com/SillyUtility/VirtualController/wiki/Emulated-Devices)
 
 ## How can you help?
 
-TBD
+See the wiki for [ways you can help Virtual Controller.](https://github.com/SillyUtility/VirtualController/wiki/How-you-can-help)
