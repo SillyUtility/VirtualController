@@ -43,25 +43,25 @@ See the wiki for a [complete run down of progress…](https://github.com/SillyUt
 This list is a preview of some game controllers that will be supported
 and their progress.
 
-| Device Name                  | Progress | Virtual Device Name<sup*</sup> |
-|:-----------------------------|:---------|:-------------------------------|
-| NES Controller               | 75%      | 9ES Controller                 |
-| Apple Pippin                 | Planned  | Pip                            |
-| Atari 2600 CX40 Joystick     | Planned  | Alfa 2600 Joystick             |
-| Atari 2600 CX30 Paddle       | Planned  | Alfa 2600 Paddle               |
-| ColecoVision Hand Controller | Planned  | CharlieVictor Hand Controller  |
-| GameBoy                      | Planned  | GolfBravo                      |
-| GameBoy Advance              | Planned  | GolfBravo Advance              |
-| GameGear                     | Planned  | GolfGear                       |
-| Intellivision                | Planned  | Indiavision                    |
-| Nintendo DS                  | Likely   | Nine DS                        |
-| Sega Genesis                 | Planned  | Sierra Golf                    |
-| Sega Master System           | Planned  | Sierra Mike System             |
-| Sega Saturn                  | Planned  | Sierra Jupiter                 |
-| SNES                         | Planned  | S9ES                           |
-| TurboGrafx-16                | Planned  | TangoGolf-16                   |
-| Vectrex                      | Planned  | Victrex                        |
-| Virtual Boy                  | Planned  | Victor Bravo                   |
+| Device Name                  | Progress | Virtual Device Name<sup>*</sup> |
+|:-----------------------------|:---------|:--------------------------------|
+| NES Controller               | 75%      | 9ES Controller                  |
+| Apple Pippin                 | Planned  | Pip                             |
+| Atari 2600 CX40 Joystick     | Planned  | Alfa 2600 Joystick              |
+| Atari 2600 CX30 Paddle       | Planned  | Alfa 2600 Paddle                |
+| ColecoVision Hand Controller | Planned  | CharlieVictor Hand Controller   |
+| GameBoy                      | Planned  | GolfBravo                       |
+| GameBoy Advance              | Planned  | GolfBravo Advance               |
+| GameGear                     | Planned  | GolfGear                        |
+| Intellivision                | Planned  | Indiavision                     |
+| Nintendo DS                  | Likely   | Nine DS                         |
+| Sega Genesis                 | Planned  | Sierra Golf                     |
+| Sega Master System           | Planned  | Sierra Mike System              |
+| Sega Saturn                  | Planned  | Sierra Jupiter                  |
+| SNES                         | Planned  | S9ES                            |
+| TurboGrafx-16                | Planned  | TangoGolf-16                    |
+| Vectrex                      | Planned  | Victrex                         |
+| Virtual Boy                  | Planned  | Victor Bravo                    |
 
 <sup>\*</sup> _names likely to change_
 

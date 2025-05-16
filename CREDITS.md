@@ -21,3 +21,7 @@
 - NES Dimmed Palette
 
 	https://lospec.com/palette-list/nes-dimmed
+
+- Gamepad UI / Controller Prompts Pack
+
+	https://greatdocbrown.itch.io/gamepad-ui
